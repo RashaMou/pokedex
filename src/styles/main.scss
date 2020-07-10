@@ -3,13 +3,31 @@
   src: local('FiraSans'), url(../fonts/PokemonHollow.ttf) format('truetype');
 }
 
-// .container {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-// }
-
 .header-title {
   font-family: FiraSans;
   text-align: center;
+}
+
+.card-container {
+  display: flex;
+  margin-top: 10%;
+  justify-content: center;
+  .main-card {
+    width: 400px;
+
+    .navigation {
+      display: flex;
+      justify-content: space-between;
+
+      .nav-icon {
+        font-size: 40px;
+      }
+    }
+
+    .info-bg {
+      background-color: #ffd54e;
+      padding: 0.5rem;
+      border-radius: 5px;
+    }
+  }
 }

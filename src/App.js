@@ -1,12 +1,12 @@
 import React from 'react';
-import Pokemon from './components/PokemonCard';
+import PokemonCard from './components/PokemonCard';
 import Header from './components/Header';
 
 function App() {
   return (
     <>
       <Header />
-      <Pokemon />
+      <PokemonCard />
     </>
   );
 }
