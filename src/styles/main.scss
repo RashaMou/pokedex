@@ -1,0 +1,15 @@
+@font-face {
+  font-family: 'FiraSans';
+  src: local('FiraSans'), url(../fonts/PokemonHollow.ttf) format('truetype');
+}
+
+// .container {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+// }
+
+.header-title {
+  font-family: FiraSans;
+  text-align: center;
+}
