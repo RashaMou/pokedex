@@ -19,6 +19,7 @@ export default function PokemonCard() {
       .get(`https://pokeapi.co/api/v2/pokemon/${randomPokemon}/`)
       .then((res) => {
         setPokemon({
+          id: res.data.id,
           name: res.data.name,
           height: res.data.height,
           weight: res.data.weight,
@@ -35,7 +36,11 @@ export default function PokemonCard() {
       <Card className='main-card'>
         <CardHeader title={pokemon.name} />
         {pokemon.image ? (
-          <CardMedia component='img' src={pokemon.image} alt={pokemon.name} />
+          <CardMedia
+            component='img'
+            src={`https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`}
+            alt={pokemon.name}
+          />
         ) : (
           <CircularProgress />
         )}
