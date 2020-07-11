@@ -7,13 +7,11 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { NavigateBefore, NavigateNext } from '@material-ui/icons';
-import getRandomNumber from '../utils/getRandomNumber';
 import { PokemonContext } from '../contexts';
 import { IconButton } from '@material-ui/core';
 
 export default function PokemonCard() {
-  const { getPokemon, pokemon } = useContext(PokemonContext);
-  const randomPokemon = getRandomNumber();
+  const { getPokemon, pokemon, randomPokemon } = useContext(PokemonContext);
 
   const getNext = () => {
     getPokemon(pokemon.id + 1);
@@ -32,15 +30,9 @@ export default function PokemonCard() {
     <div className='card-container'>
       <Card className='card'>
         <CardHeader title={pokemon.name} />
-
         <CardContent className='card-content'>
           {pokemon.image ? (
-            <CardMedia
-              component='img'
-              //   src={`https://pokeres.bastionbot.org/images/pokemon/${randomPokemon}.png`}
-              src={pokemon.image}
-              alt={pokemon.name}
-            />
+            <CardMedia component='img' src={pokemon.image} alt={pokemon.name} />
           ) : (
             <CircularProgress />
           )}

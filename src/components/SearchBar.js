@@ -7,7 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { ThemeContext } from '../contexts';
 
 const styles = {
-  rootDark: {
+  rootDarkTheme: {
     '& label': {
       color: 'white',
     },
@@ -19,11 +19,11 @@ const styles = {
     },
   },
 
-  inputDark: {
+  inputDarkTheme: {
     color: 'white',
   },
 
-  rootLight: {
+  rootLightTheme: {
     '& label': {
       color: '#121212',
     },
@@ -35,7 +35,7 @@ const styles = {
     },
   },
 
-  inputLight: {
+  inputLightTheme: {
     color: '#121212',
   },
 };
@@ -53,18 +53,22 @@ const SearchBar = (props) => {
     <TextField
       label='Search'
       onChange={handleChange}
-      className={`${isDarkTheme ? classes.rootDark : classes.rootLight}`}
+      className={`${
+        isDarkTheme ? classes.rootDarkTheme : classes.rootLightTheme
+      }`}
       value={query}
       InputProps={{
         classes: {
-          input: `${isDarkTheme ? classes.inputDark : classes.inputLight}`,
+          input: `${
+            isDarkTheme ? classes.inputDarkTheme : classes.inputLightTheme
+          }`,
         },
         endAdornment: (
           <InputAdornment>
             <IconButton>
               <SearchIcon
                 className={`${
-                  isDarkTheme ? classes.inputDark : classes.inputLight
+                  isDarkTheme ? classes.inputDarkTheme : classes.inputLightTheme
                 }`}
               />
             </IconButton>

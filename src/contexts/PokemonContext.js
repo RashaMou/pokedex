@@ -1,10 +1,17 @@
+/*
+ * Context API manages API calls to PokeApi and storing the current Pokemon in state
+ * It is called in the PokemonCard component and in the Header component ("Surprise Me button fetches a random Pokemon")
+ */
+
 import React, { createContext, useState } from 'react';
 import axios from 'axios';
+import getRandomNumber from '../utils/getRandomNumber';
 
 export const PokemonContext = createContext();
 
 export const PokemonContextProvider = (props) => {
   const [pokemon, setPokemon] = useState({});
+  const randomPokemon = getRandomNumber();
 
   const getPokemon = (id) => {
     axios
@@ -24,7 +31,7 @@ export const PokemonContextProvider = (props) => {
   };
 
   return (
-    <PokemonContext.Provider value={{ getPokemon, pokemon }}>
+    <PokemonContext.Provider value={{ getPokemon, pokemon, randomPokemon }}>
       {props.children}
     </PokemonContext.Provider>
   );
