@@ -13,13 +13,13 @@ export default function PokemonCard() {
   const [pokemon, setPokemon] = useState({});
   const randomPokemon = getRandomNumber();
 
-  // load random Pokemon when component mounts
-  useEffect(() => {
+  const getPokemon = (id) => {
     axios
-      .get(`https://pokeapi.co/api/v2/pokemon/${randomPokemon}/`)
+      .get(`https://pokeapi.co/api/v2/pokemon/${id}/`)
       .then((res) => {
         setPokemon({
-          name: res.data.name,
+          id: res.data.id,
+          name: res.data.name.toUpperCase(),
           height: res.data.height,
           weight: res.data.weight,
           image: res.data.sprites.front_default,
@@ -28,6 +28,19 @@ export default function PokemonCard() {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const getNext = () => {
+    getPokemon(pokemon.id + 1);
+  };
+
+  const getPrevious = () => {
+    getPokemon(pokemon.id - 1);
+  };
+
+  // load random Pokemon when component mounts
+  useEffect(() => {
+    getPokemon(randomPokemon);
   }, []);
 
   return (
@@ -39,18 +52,24 @@ export default function PokemonCard() {
           {pokemon.image ? (
             <CardMedia
               component='img'
-              src={`https://pokeres.bastionbot.org/images/pokemon/${randomPokemon}.png`}
+              //   src={`https://pokeres.bastionbot.org/images/pokemon/${randomPokemon}.png`}
+              src={pokemon.image}
               alt={pokemon.name}
             />
           ) : (
             <CircularProgress />
           )}
           <div className='navigation'>
-            <NavigateBefore className='nav-icon' />
-            <NavigateNext className='nav-icon' />
+            <NavigateBefore
+              className='nav-icon'
+              onClick={() => getPrevious()}
+            />
+            <NavigateNext className='nav-icon' onClick={() => getNext()} />
           </div>
           <div className='info-bg'>
             <Typography variant='body2' color='textSecondary' component='p'>
+              <span>#{pokemon.id}</span>
+              <br />
               <span>Height: {pokemon.height}</span>
               <br />
               <span>Weight: {pokemon.weight}</span>

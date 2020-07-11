@@ -13,7 +13,7 @@
   margin-top: 10%;
   justify-content: center;
   .card {
-    width: 400px;
+    width: 300px;
 
     .card-content {
       display: flex;
@@ -23,7 +23,9 @@
     }
 
     .MuiCardMedia-img {
-      width: 200px;
+      //   width: 200px;
+      background-color: #ffd54e;
+      border-radius: 5px;
     }
 
     .navigation {
@@ -33,6 +35,9 @@
 
       .nav-icon {
         font-size: 4rem;
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
 
