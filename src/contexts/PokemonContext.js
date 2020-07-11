@@ -13,9 +13,9 @@ export const PokemonContextProvider = (props) => {
   const [pokemon, setPokemon] = useState({});
   const randomPokemon = getRandomNumber();
 
-  const getPokemon = (id) => {
+  const getPokemon = (nameOrId) => {
     axios
-      .get(`https://pokeapi.co/api/v2/pokemon/${id}/`)
+      .get(`https://pokeapi.co/api/v2/pokemon/${nameOrId}/`)
       .then((res) => {
         setPokemon({
           id: res.data.id,

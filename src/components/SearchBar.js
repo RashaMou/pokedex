@@ -4,7 +4,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import { withStyles } from '@material-ui/core/styles';
-import { ThemeContext } from '../contexts';
+import { ThemeContext, PokemonContext } from '../contexts';
 
 const styles = {
   rootDarkTheme: {
@@ -42,12 +42,14 @@ const styles = {
 
 const SearchBar = (props) => {
   const { isDarkTheme } = useContext(ThemeContext);
+  const { getPokemon } = useContext(PokemonContext);
 
   const [query, setQuery] = useState('');
   const { classes } = props;
 
   const handleChange = (e) => {
     setQuery(e.target.value);
+    console.log(query);
   };
   return (
     <TextField
@@ -64,7 +66,7 @@ const SearchBar = (props) => {
           }`,
         },
         endAdornment: (
-          <InputAdornment>
+          <InputAdornment onClick={() => getPokemon(query)}>
             <IconButton>
               <SearchIcon
                 className={`${

@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
+import React, { useEffect, useContext } from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -37,14 +36,11 @@ export default function PokemonCard() {
             <CircularProgress />
           )}
           <div className='navigation'>
-            <IconButton>
-              <NavigateBefore
-                className='nav-icon'
-                onClick={() => getPrevious()}
-              />
+            <IconButton onClick={() => getPrevious()}>
+              <NavigateBefore className='nav-icon' />
             </IconButton>
-            <IconButton>
-              <NavigateNext className='nav-icon' onClick={() => getNext()} />
+            <IconButton onClick={() => getNext()}>
+              <NavigateNext className='nav-icon' />
             </IconButton>
           </div>
           <div className='info-bg'>
