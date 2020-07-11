@@ -2,9 +2,11 @@ import React, { useContext } from 'react';
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import Brightness3Icon from '@material-ui/icons/Brightness3';
 import { ThemeContext } from '../contexts/ThemeContext';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 const ToggleTheme = () => {
-  const { toggleTheme, setIcon, icon } = useContext(ThemeContext);
+  const { toggleTheme } = useContext(ThemeContext);
+  const [icon, setIcon] = useLocalStorage(false);
 
   const iconChange = () => {
     setIcon(!icon);

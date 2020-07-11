@@ -1,11 +1,10 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext } from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
 
 export const ThemeContext = createContext();
 
 const ThemeContextProvider = (props) => {
   const [theme, setTheme] = useLocalStorage('light');
-  const [icon, setIcon] = useLocalStorage(false);
 
   const toggleTheme = () => {
     if (theme === 'light') {
@@ -16,7 +15,7 @@ const ThemeContextProvider = (props) => {
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme, icon, setIcon }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {props.children}
     </ThemeContext.Provider>
   );
