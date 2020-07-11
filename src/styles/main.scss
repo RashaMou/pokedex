@@ -6,7 +6,7 @@
 .toggle-search-container {
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: 95%;
 }
 
 .header-title {
@@ -14,7 +14,11 @@
   text-align: center;
 }
 
-.hero-body {
+.header-banner {
+  background: url('../assets/banner.png');
+}
+
+.banner-body {
   padding-top: 0.3rem;
   padding-bottom: 3rem;
   display: flex;

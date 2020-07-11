@@ -6,8 +6,8 @@ import FlareIcon from '@material-ui/icons/Flare';
 
 const Header = () => {
   return (
-    <section className='hero is-bold is-warning'>
-      <div className='hero-body'>
+    <section className='header-banner'>
+      <div className='banner-body'>
         <div className='toggle-search-container'>
           <ToggleTheme />
           <SearchBar />
