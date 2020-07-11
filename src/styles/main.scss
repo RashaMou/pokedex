@@ -14,6 +14,7 @@
   justify-content: center;
   .card {
     width: 300px;
+    animation: zoomIn 400ms;
 
     .card-content {
       display: flex;
@@ -63,5 +64,15 @@
     .info {
       font-size: 1rem;
     }
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    transform: scale3d(0.3, 0.3, 0.3);
+    opacity: 0;
+  }
+  50% {
+    opcaity: 1;
   }
 }
