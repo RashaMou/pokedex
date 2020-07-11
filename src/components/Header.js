@@ -1,5 +1,6 @@
 import React from 'react';
 import ToggleTheme from './ToggleTheme';
+import SearchBar from './SearchBar';
 
 const Header = () => {
   return (
@@ -7,6 +8,7 @@ const Header = () => {
       <div className='hero-body'>
         <div className='container'>
           <ToggleTheme />
+          <SearchBar />
           <h1 className='header-title title is-1'>Pokedex</h1>
         </div>
       </div>
