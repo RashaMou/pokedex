@@ -11,22 +11,20 @@ const SearchBar = () => {
     setQuery(e.target.value);
   };
   return (
-    <>
-      <TextField
-        label='Search'
-        onChange={handleChange}
-        value={query}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment>
-              <IconButton>
-                <SearchIcon />
-              </IconButton>
-            </InputAdornment>
-          ),
-        }}
-      />
-    </>
+    <TextField
+      label='Search'
+      onChange={handleChange}
+      value={query}
+      InputProps={{
+        endAdornment: (
+          <InputAdornment>
+            <IconButton>
+              <SearchIcon />
+            </IconButton>
+          </InputAdornment>
+        ),
+      }}
+    />
   );
 };
 

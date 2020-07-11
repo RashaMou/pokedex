@@ -1,3 +1,8 @@
+/*
+ * Custom hook to save a value in Local Storage.
+ * Usage: const [valueToStore, setValueToStore] = useLocalStorage(optionalDefaultValue)
+ */
+
 import { useState } from 'react';
 
 const useLocalStorage = (key, initialValue) => {
