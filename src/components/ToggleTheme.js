@@ -1,11 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import Brightness3Icon from '@material-ui/icons/Brightness3';
 import { ThemeContext } from '../contexts/ThemeContext';
 
 const ToggleTheme = () => {
-  const [icon, setIcon] = useState(false);
-  const { toggleTheme } = useContext(ThemeContext);
+  const { toggleTheme, setIcon, icon } = useContext(ThemeContext);
 
   const iconChange = () => {
     setIcon(!icon);

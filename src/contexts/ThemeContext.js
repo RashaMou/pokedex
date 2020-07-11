@@ -5,6 +5,7 @@ export const ThemeContext = createContext();
 
 const ThemeContextProvider = (props) => {
   const [theme, setTheme] = useLocalStorage('light');
+  const [icon, setIcon] = useLocalStorage(false);
 
   const toggleTheme = () => {
     if (theme === 'light') {
@@ -15,7 +16,7 @@ const ThemeContextProvider = (props) => {
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme, icon, setIcon }}>
       {props.children}
     </ThemeContext.Provider>
   );
