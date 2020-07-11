@@ -67,12 +67,17 @@ export default function PokemonCard() {
             <NavigateNext className='nav-icon' onClick={() => getNext()} />
           </div>
           <div className='info-bg'>
-            <Typography variant='body2' color='textSecondary' component='p'>
-              <span>#{pokemon.id}</span>
+            <Typography
+              variant='body2'
+              color='textSecondary'
+              component='p'
+              className='typography'
+            >
+              <span className='poke-id'>#{pokemon.id}</span>
               <br />
-              <span>Height: {pokemon.height}</span>
+              <span className='info'>Height: {pokemon.height}</span>
               <br />
-              <span>Weight: {pokemon.weight}</span>
+              <span className='info'>Weight: {pokemon.weight}</span>
             </Typography>
           </div>
         </CardContent>

@@ -48,5 +48,20 @@
       border-radius: 5px;
       width: 100%;
     }
+
+    .typography {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .poke-id {
+      font-size: 1.2rem;
+      text-align: center;
+      align-self: center;
+    }
+
+    .info {
+      font-size: 1rem;
+    }
   }
 }
