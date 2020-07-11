@@ -12,22 +12,36 @@
   display: flex;
   margin-top: 10%;
   justify-content: center;
-  .main-card {
+  .card {
     width: 400px;
+
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .MuiCardMedia-img {
+      width: 200px;
+    }
 
     .navigation {
       display: flex;
       justify-content: space-between;
+      width: 100%;
 
       .nav-icon {
-        font-size: 40px;
+        font-size: 4rem;
       }
     }
 
     .info-bg {
+      margin-top: 10px;
       background-color: #ffd54e;
       padding: 0.5rem;
       border-radius: 5px;
+      width: 100%;
     }
   }
 }

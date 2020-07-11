@@ -11,15 +11,14 @@ import getRandomNumber from '../utils/getRandomNumber';
 
 export default function PokemonCard() {
   const [pokemon, setPokemon] = useState({});
+  const randomPokemon = getRandomNumber();
 
   // load random Pokemon when component mounts
   useEffect(() => {
-    const randomPokemon = getRandomNumber();
     axios
       .get(`https://pokeapi.co/api/v2/pokemon/${randomPokemon}/`)
       .then((res) => {
         setPokemon({
-          id: res.data.id,
           name: res.data.name,
           height: res.data.height,
           weight: res.data.weight,
@@ -33,19 +32,19 @@ export default function PokemonCard() {
 
   return (
     <div className='card-container'>
-      <Card className='main-card'>
+      <Card className='card'>
         <CardHeader title={pokemon.name} />
-        {pokemon.image ? (
-          <CardMedia
-            component='img'
-            src={`https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`}
-            alt={pokemon.name}
-          />
-        ) : (
-          <CircularProgress />
-        )}
 
-        <CardContent>
+        <CardContent className='card-content'>
+          {pokemon.image ? (
+            <CardMedia
+              component='img'
+              src={`https://pokeres.bastionbot.org/images/pokemon/${randomPokemon}.png`}
+              alt={pokemon.name}
+            />
+          ) : (
+            <CircularProgress />
+          )}
           <div className='navigation'>
             <NavigateBefore className='nav-icon' />
             <NavigateNext className='nav-icon' />
@@ -53,6 +52,7 @@ export default function PokemonCard() {
           <div className='info-bg'>
             <Typography variant='body2' color='textSecondary' component='p'>
               <span>Height: {pokemon.height}</span>
+              <br />
               <span>Weight: {pokemon.weight}</span>
             </Typography>
           </div>
