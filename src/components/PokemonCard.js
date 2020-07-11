@@ -7,14 +7,16 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { NavigateBefore, NavigateNext } from '@material-ui/icons';
+import getRandomNumber from '../utils/getRandomNumber';
 
 export default function PokemonCard() {
   const [pokemon, setPokemon] = useState({});
 
   // load random Pokemon when component mounts
   useEffect(() => {
+    const randomPokemon = getRandomNumber();
     axios
-      .get('https://pokeapi.co/api/v2/pokemon/12/')
+      .get(`https://pokeapi.co/api/v2/pokemon/${randomPokemon}/`)
       .then((res) => {
         setPokemon({
           name: res.data.name,
