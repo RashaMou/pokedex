@@ -4,18 +4,14 @@ import useLocalStorage from '../hooks/useLocalStorage';
 export const ThemeContext = createContext();
 
 const ThemeContextProvider = (props) => {
-  const [theme, setTheme] = useLocalStorage('light');
+  const [isDarkTheme, setIsDarkTheme] = useLocalStorage(false);
 
   const toggleTheme = () => {
-    if (theme === 'light') {
-      setTheme('dark');
-    } else {
-      setTheme('light');
-    }
+    setIsDarkTheme(!isDarkTheme);
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ isDarkTheme, toggleTheme, setIsDarkTheme }}>
       {props.children}
     </ThemeContext.Provider>
   );

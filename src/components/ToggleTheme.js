@@ -2,14 +2,20 @@ import React, { useContext } from 'react';
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import Brightness3Icon from '@material-ui/icons/Brightness3';
 import { ThemeContext } from '../contexts/ThemeContext';
+import Switch from '@material-ui/core/Switch';
 import useLocalStorage from '../hooks/useLocalStorage';
 
 const ToggleTheme = () => {
-  const { toggleTheme } = useContext(ThemeContext);
+  const { toggleTheme, isDarkTheme } = useContext(ThemeContext);
   const [icon, setIcon] = useLocalStorage(false);
 
   const iconChange = () => {
     setIcon(!icon);
+  };
+
+  const handleSwitch = () => {
+    toggleTheme();
+    iconChange();
   };
 
   return (
@@ -21,16 +27,11 @@ const ToggleTheme = () => {
           <WbSunnyIcon className='sun-icon' alt='sun icon' />
         )}
       </span>
-      <div className='toggle__btn'>
-        <input
-          type='checkbox'
-          className='checkbox'
-          onChange={iconChange}
-          onClick={toggleTheme}
-        />
-        <div className='circle'></div>
-        <div className='layer'></div>
-      </div>
+      <Switch
+        checked={isDarkTheme}
+        onChange={() => handleSwitch()}
+        color='default'
+      />
     </div>
   );
 };

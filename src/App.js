@@ -4,13 +4,10 @@ import Header from './components/Header';
 import { ThemeContext } from './contexts/ThemeContext';
 
 function App() {
-  const { theme } = useContext(ThemeContext);
+  const { isDarkTheme } = useContext(ThemeContext);
 
-  useEffect(() => {
-    console.log(theme);
-  }, [theme]);
   return (
-    <div className={`${theme === 'light' ? 'lightTheme' : 'darkTheme'}`}>
+    <div className={`${!isDarkTheme ? 'lightTheme' : 'darkTheme'}`}>
       <Header />
       <PokemonCard />
     </div>
