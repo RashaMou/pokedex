@@ -1,15 +1,17 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import PokemonCard from './components/PokemonCard';
 import Header from './components/Header';
-import { ThemeContext } from './contexts/ThemeContext';
+import { ThemeContext, PokemonContextProvider } from './contexts';
 
 function App() {
   const { isDarkTheme } = useContext(ThemeContext);
 
   return (
     <div className={`${!isDarkTheme ? 'lightTheme' : 'darkTheme'}`}>
-      <Header />
-      <PokemonCard />
+      <PokemonContextProvider>
+        <Header />
+        <PokemonCard />
+      </PokemonContextProvider>
     </div>
   );
 }

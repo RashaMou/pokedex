@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
-import { ThemeContext } from '../contexts/ThemeContext';
+import { ThemeContext } from '../contexts';
 
 const ToggleTheme = () => {
   const { toggleTheme, isDarkTheme } = useContext(ThemeContext);

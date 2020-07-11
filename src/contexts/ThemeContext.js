@@ -3,7 +3,7 @@ import useLocalStorage from '../hooks/useLocalStorage';
 
 export const ThemeContext = createContext();
 
-const ThemeContextProvider = (props) => {
+export const ThemeContextProvider = (props) => {
   const [isDarkTheme, setIsDarkTheme] = useLocalStorage(false);
 
   const toggleTheme = () => {
@@ -16,5 +16,3 @@ const ThemeContextProvider = (props) => {
     </ThemeContext.Provider>
   );
 };
-
-export default ThemeContextProvider;

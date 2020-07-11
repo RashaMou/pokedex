@@ -4,7 +4,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import { withStyles } from '@material-ui/core/styles';
-import { ThemeContext } from '../contexts/ThemeContext';
+import { ThemeContext } from '../contexts';
 
 const styles = {
   rootDark: {
