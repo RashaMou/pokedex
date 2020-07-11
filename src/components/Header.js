@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ToggleTheme from './ToggleTheme';
 import SearchBar from './SearchBar';
 import Button from '@material-ui/core/Button';
 import FlareIcon from '@material-ui/icons/Flare';
+import { PokemonContext } from '../contexts';
 
 const Header = () => {
+  const { getPokemon, randomPokemon } = useContext(PokemonContext);
   return (
     <section className='header-banner'>
       <div className='banner-body'>
@@ -18,6 +20,7 @@ const Header = () => {
           color='default'
           startIcon={<FlareIcon />}
           className='button'
+          onClick={() => getPokemon(randomPokemon)}
         >
           Surprise me!
         </Button>
