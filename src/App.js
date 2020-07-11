@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import PokemonCard from './components/PokemonCard';
 import Header from './components/Header';
 

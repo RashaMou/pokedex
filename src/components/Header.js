@@ -2,9 +2,9 @@ import React from 'react';
 
 const Header = () => {
   return (
-    <section class='hero is-bold is-warning'>
-      <div class='hero-body'>
-        <div class='container'>
+    <section className='hero is-bold is-warning'>
+      <div className='hero-body'>
+        <div className='container'>
           <h1 className='header-title title is-1'>Pokedex</h1>
         </div>
       </div>
