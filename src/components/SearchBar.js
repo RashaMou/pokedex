@@ -66,8 +66,8 @@ const SearchBar = (props) => {
           }`,
         },
         endAdornment: (
-          <InputAdornment onClick={() => getPokemon(query)}>
-            <IconButton>
+          <InputAdornment>
+            <IconButton onClick={() => getPokemon(query)}>
               <SearchIcon
                 className={`${
                   isDarkTheme ? classes.inputDarkTheme : classes.inputLightTheme
