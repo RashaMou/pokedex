@@ -15,14 +15,14 @@ export const getRandomNumber = () => {
  * Fetcher utility functions for react-query library
  ******************************************/
 
-export const fetcher = (...args) => {
-  return fetch(...args).then((res) => res.json());
+export const fetchAllPokemon = async () => {
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=1000/`);
+  const data = await response.json();
+  return data;
 };
 
-// setPokemon({
-//   id: res.data.id,
-//   name: res.data.name.toUpperCase(),
-//   height: res.data.height,
-//   weight: res.data.weight,
-//   image: res.data.sprites.front_default,
-// });
+export const fetchPokemon = async (id) => {
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+  const data = await response.json();
+  return data;
+};

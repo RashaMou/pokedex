@@ -10,12 +10,7 @@ import { PokemonContext } from '../contexts';
 import { IconButton } from '@material-ui/core';
 import pokeball from '../assets/pokeball.png';
 import { useQuery } from 'react-query';
-
-const fetchPokemon = async (id) => {
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-  const data = await response.json();
-  return data;
-};
+import { fetchPokemon } from '../utils';
 
 export default function PokemonCard() {
   const [id, setId] = useState(1);
