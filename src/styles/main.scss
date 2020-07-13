@@ -3,6 +3,18 @@
   src: local('FiraSans'), url(../fonts/PokemonHollow.ttf) format('truetype');
 }
 
+.pokeball {
+  animation: load 2s infinite;
+  width: 48px;
+  height: 48px;
+}
+
+@keyframes load {
+  50% {
+    transform: scale(0.7);
+  }
+}
+
 .toggle-search-container {
   display: flex;
   justify-content: space-between;
@@ -16,6 +28,7 @@
 
 .header-banner {
   background: url('../assets/banner.png');
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.24), 0 4px 4px rgba(0, 0, 0, 0.12);
 }
 
 .banner-body {
@@ -96,30 +109,12 @@
   }
 }
 
-@keyframes zoomIn {
-  0% {
-    transform: scale3d(0.3, 0.3, 0.3);
-    opacity: 0;
-  }
-  50% {
-    opcaity: 1;
-  }
-}
-
-@keyframes slide-right {
-  0% {
-    transform: translateX(-900px);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-@keyframes slide-left {
-  0% {
-    transform: translateX(900px);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
+// @keyframes zoomIn {
+//   0% {
+//     transform: scale3d(0.3, 0.3, 0.3);
+//     opacity: 0;
+//   }
+//   50% {
+//     opcaity: 1;
+//   }
+// }

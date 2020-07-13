@@ -5,7 +5,8 @@
 
 import React, { createContext, useState } from 'react';
 import axios from 'axios';
-import getRandomNumber from '../utils/getRandomNumber';
+import { useParams } from 'react-router-dom';
+import { getRandomNumber } from '../utils/';
 
 export const PokemonContext = createContext();
 
