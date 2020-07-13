@@ -31,8 +31,21 @@ export const PokemonContextProvider = (props) => {
       });
   };
 
+  const fetchPokemon = () => {
+    axios
+      .get('https://pokeapi.co/api/v2/pokemon/')
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
-    <PokemonContext.Provider value={{ getPokemon, pokemon, randomPokemon }}>
+    <PokemonContext.Provider
+      value={{ getPokemon, pokemon, randomPokemon, fetchPokemon }}
+    >
       {props.children}
     </PokemonContext.Provider>
   );
