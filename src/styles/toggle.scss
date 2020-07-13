@@ -1,0 +1,15 @@
+.toggle__box {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.sun-icon,
+.moon-icon {
+  width: 20%;
+  height: auto;
+}
+
+.moon-icon {
+  color: white;
+}
