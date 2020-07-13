@@ -12,7 +12,7 @@ export const getRandomNumber = () => {
 };
 
 /******************************************
- * Fetcher utility function for SWR library
+ * Fetcher utility functions for react-query library
  ******************************************/
 
 export const fetcher = (...args) => {
