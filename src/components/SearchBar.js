@@ -9,10 +9,11 @@ import { ThemeContext, PokemonContext } from '../contexts';
 import { useQuery } from 'react-query';
 import debounce from 'lodash.debounce';
 
+// Todo Add onlick to display Pokemon from search. If no Pokemon image is found from the nice ones, display the sprite.
+
 const fetchAllPokemon = async () => {
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=1000/`);
   const data = await response.json();
-  console.log(data);
   return data;
 };
 

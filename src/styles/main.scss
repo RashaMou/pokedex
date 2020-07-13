@@ -47,6 +47,8 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  height: 50%;
+  align-items: center;
 }
 
 .card {
@@ -56,6 +58,9 @@
 
   .img-container {
     width: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .pokemon-img {
@@ -75,7 +80,9 @@
     width: 100%;
 
     .nav-icon {
-      font-size: 4rem;
+      // font-size: 4rem;
+      height: 30px;
+      width: 30px;
       &:hover {
         cursor: pointer;
       }

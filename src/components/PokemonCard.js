@@ -21,56 +21,60 @@ export default function PokemonCard() {
   const [id, setId] = useState(1);
   const { status, data: pokemon } = useQuery(id, fetchPokemon);
 
-  if (status === 'loading') {
-    return <img src={pokeball} alt='pokeball spinner' className='pokeball' />;
-  }
-
   if (status === 'error') {
     return <div>Oops, something went wrong.</div>;
   }
   const getNext = async () => {
-    setId(id + 1);
+    setId(pokemon.id + 1);
   };
 
   const getPrevious = async () => {
-    setId(id - 1);
+    if (pokemon.id === 1) {
+      return;
+    } else {
+      setId(pokemon.id - 1);
+    }
   };
 
   return (
     <div className='card-container'>
-      <div className='card'>
-        <div className='img-container'>
-          <IconButton onClick={() => getPrevious()}>
-            <NavigateBefore className='nav-icon' />
-          </IconButton>
-          <img
-            src={`https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`}
-            alt={pokemon.name}
-            className='pokemon-img'
-          />
-        </div>
-
-        <div className='info-bg'>
-          <div className='card-content'>
-            <h2>{pokemon.name}</h2>
-            <Typography
-              variant='body2'
-              color='textSecondary'
-              component='p'
-              className='typography'
-            >
-              <span className='poke-id'>#{pokemon.id}</span>
-              <br />
-              <span className='info'>Height: {pokemon.height}</span>
-              <br />
-              <span className='info'>Weight: {pokemon.weight}</span>
-            </Typography>
+      {status === 'loading' ? (
+        <img src={pokeball} alt='pokeball spinner' className='pokeball' />
+      ) : (
+        <div className='card'>
+          <div className='img-container'>
+            <IconButton onClick={() => getPrevious()}>
+              <NavigateBefore className='nav-icon' />
+            </IconButton>
+            <img
+              src={`https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`}
+              alt={pokemon.name}
+              className='pokemon-img'
+            />
+            <IconButton onClick={() => getNext()}>
+              <NavigateNext className='nav-icon' />
+            </IconButton>
           </div>
-          <IconButton onClick={() => getNext()}>
-            <NavigateNext className='nav-icon' />
-          </IconButton>
+
+          <div className='info-bg'>
+            <div className='card-content'>
+              <h2>{pokemon.name}</h2>
+              <Typography
+                variant='body2'
+                color='textSecondary'
+                component='p'
+                className='typography'
+              >
+                <span className='poke-id'>#{pokemon.id}</span>
+                <br />
+                <span className='info'>Height: {pokemon.height}</span>
+                <br />
+                <span className='info'>Weight: {pokemon.weight}</span>
+              </Typography>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
