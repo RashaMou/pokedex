@@ -30,43 +30,43 @@ export default function PokemonCard() {
 
   return (
     <div className='card-container'>
-      <Card className='card'>
-        <CardHeader title={pokemon.name} />
-        <CardContent className='card-content'>
-          {pokemon ? (
-            <CardMedia
-              component='img'
-              src={`https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`}
-              alt={pokemon.name}
-              className={`${slideIn === 'next' ? 'slide-right' : 'slide-left'}`}
-            />
-          ) : (
-            <img src={pokeball} alt='pokeball spinner' className='pokeball' />
-          )}
-          <div className='navigation'>
+      {!pokemon ? (
+        <img src={pokeball} alt='pokeball spinner' className='pokeball' />
+      ) : (
+        <div className='card'>
+          <div className='img-container'>
             <IconButton onClick={() => getPrevious()}>
               <NavigateBefore className='nav-icon' />
             </IconButton>
+            <img
+              src={`https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`}
+              alt={pokemon.name}
+              className='pokemon-img'
+            />
             <IconButton onClick={() => getNext()}>
               <NavigateNext className='nav-icon' />
             </IconButton>
           </div>
+
           <div className='info-bg'>
-            <Typography
-              variant='body2'
-              color='textSecondary'
-              component='p'
-              className='typography'
-            >
-              <span className='poke-id'>#{pokemon.id}</span>
-              <br />
-              <span className='info'>Height: {pokemon.height}</span>
-              <br />
-              <span className='info'>Weight: {pokemon.weight}</span>
-            </Typography>
+            <div className='card-content'>
+              <h2>{pokemon.name}</h2>
+              <Typography
+                variant='body2'
+                color='textSecondary'
+                component='p'
+                className='typography'
+              >
+                <span className='poke-id'>#{pokemon.id}</span>
+                <br />
+                <span className='info'>Height: {pokemon.height}</span>
+                <br />
+                <span className='info'>Weight: {pokemon.weight}</span>
+              </Typography>
+            </div>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      )}
     </div>
   );
 }
