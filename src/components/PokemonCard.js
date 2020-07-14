@@ -33,7 +33,7 @@ export default function PokemonCard() {
         <img src={pokeball} alt='pokeball spinner' className='pokeball' />
       ) : (
         <div className='card'>
-          <div style={styles.imageContainer}>
+          <div className='image-container'>
             <IconButton onClick={() => getPrevious()}>
               <NavigateBefore className='nav-icon' />
             </IconButton>
@@ -96,7 +96,7 @@ export default function PokemonCard() {
                     {pokemon.stats?.map((item, idx) => {
                       return (
                         <div key={idx} className='stats'>
-                          <p>{item.name}</p>
+                          <p>{capitalizeFirstLetter(item.name)}</p>
                           <ProgressBar stat={item.stat} />
                         </div>
                       );
@@ -111,13 +111,3 @@ export default function PokemonCard() {
     </div>
   );
 }
-
-const styles = {
-  imageContainer: {
-    width: '400px',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: '20px 0 20px 0',
-  },
-};
