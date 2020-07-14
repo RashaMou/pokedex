@@ -26,9 +26,9 @@ export const PokemonContextProvider = (props) => {
       const species = await axios.get(
         `https://pokeapi.co/api/v2/pokemon-species/${nameOrId}/`
       );
-      const type = await axios.get(
-        `https://pokeapi.co/api/v2/type/${nameOrId}/`
-      );
+      const typesArray = res.data.types.map((item) => {
+        return item.type.name;
+      });
       setPokemon({
         threeNumberId: threeNumberId(res.data.id),
         id: res.data.id,
@@ -37,7 +37,8 @@ export const PokemonContextProvider = (props) => {
         weight: res.data.weight,
         image: res.data.sprites.front_default,
         color: setPokemonBackgroundColor(species.data.color.name),
-        type: type.data.name,
+        habitat: species.data.habitat.name,
+        types: typesArray,
       });
     } catch (error) {
       console.log(error);

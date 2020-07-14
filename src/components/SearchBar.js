@@ -63,7 +63,7 @@ const SearchBar = (props) => {
           getPokemon(value);
           setQuery('');
         }}
-        selectOnFocus={true}
+        // selectOnFocus={true}
         onInputChange={(event, value) => setQuery(value)}
         openOnFocus={false}
         onMouseDownCapture={(e) => e.stopPropagation()}
