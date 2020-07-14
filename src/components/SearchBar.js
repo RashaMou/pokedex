@@ -10,8 +10,10 @@ import { useQuery } from 'react-query';
 import { Autocomplete, createFilterOptions } from '@material-ui/lab';
 import TextField from '@material-ui/core/TextField';
 import { ThemeContext, PokemonContext } from '../contexts';
-import { fetchAllPokemon } from '../utils';
+import { fetchAllPokemon, sanitizeData } from '../utils';
 import { withStyles } from '@material-ui/core/styles';
+
+// TODO sanitize data from useQuery to exclude those with dashes, e.g. pikachu-rock-star
 
 const styles = {
   rootDarkTheme: {
@@ -50,8 +52,16 @@ const styles = {
 const SearchBar = (props) => {
   const { isDarkTheme } = useContext(ThemeContext);
   const { getPokemon } = useContext(PokemonContext);
-  const { data: pokemon } = useQuery('pokemon', fetchAllPokemon);
+  const { data } = useQuery('pokemon', fetchAllPokemon);
   const [query, setQuery] = useState('');
+
+  let pokemon;
+  if (data) {
+    const namesArray = data.results.map((result) => {
+      return result.name;
+    });
+    pokemon = sanitizeData(namesArray);
+  }
 
   const { classes } = props;
 
@@ -74,7 +84,7 @@ const SearchBar = (props) => {
         onMouseDownCapture={(e) => e.stopPropagation()}
         id='search'
         filterOptions={filterOptions}
-        options={pokemon?.results.map((option) => option.name)}
+        options={pokemon?.map((option) => option)}
         renderInput={(params) => (
           <TextField
             {...params}

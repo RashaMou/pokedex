@@ -99,3 +99,23 @@ export const threeNumberId = (id) => {
     return id;
   }
 };
+
+/****************************************************************************
+ * Sanitize list of names that comes from calling /pokemon to exclude those
+ * with dashes
+ ****************************************************************************/
+
+export const sanitizeData = (array) => {
+  const sanitizedData = array.filter((name) => {
+    return name.includes('-') === false;
+  });
+  return sanitizedData;
+};
+
+/****************************************************************************
+ * Capitalize first letter
+ ****************************************************************************/
+
+export const capitalizeFirstLetter = (word) => {
+  return word.charAt(0).toUpperCase() + word.slice(1);
+};

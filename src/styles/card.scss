@@ -47,7 +47,7 @@
 .card-header-background {
   height: 100px;
   width: 100%;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.24), 0 4px 4px rgba(0, 0, 0, 0.12);
+  //   box-shadow: 0 4px 1px rgba(0, 0, 0, 0.24), 0 8px 4px rgba(0, 0, 0, 0.12);
 }
 .ball-container {
   display: flex;
@@ -70,9 +70,6 @@
   color: white;
   text-align: center;
   font-weight: bold;
-}
-
-.card-info-container {
 }
 
 .card-bottom-content {
@@ -102,7 +99,6 @@
   display: flex;
   padding: 0.5rem 0 0.5rem 0;
   justify-content: space-around;
-
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.24), 0 4px 4px rgba(0, 0, 0, 0.12);
 
   .height-weight {

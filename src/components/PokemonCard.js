@@ -3,7 +3,7 @@ import { NavigateBefore, NavigateNext } from '@material-ui/icons';
 import { PokemonContext } from '../contexts';
 import { IconButton } from '@material-ui/core';
 import pokeball from '../assets/pokeball.png';
-import { setPokemonBackgroundColor } from '../utils';
+import { setPokemonBackgroundColor, capitalizeFirstLetter } from '../utils';
 import ProgressBar from './ProgressBar';
 
 export default function PokemonCard() {

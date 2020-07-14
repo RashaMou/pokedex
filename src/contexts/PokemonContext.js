@@ -10,6 +10,7 @@ import {
   getRandomNumber,
   setPokemonBackgroundColor,
   threeNumberId,
+  capitalizeFirstLetter,
 } from '../utils';
 
 export const PokemonContext = createContext();
@@ -50,7 +51,7 @@ export const PokemonContextProvider = (props) => {
       setPokemon({
         threeNumberId: threeNumberId(mainInfo.data.id),
         id: mainInfo.data.id,
-        name: mainInfo.data.name.toUpperCase(),
+        name: capitalizeFirstLetter(mainInfo.data.name),
         height: mainInfo.data.height,
         weight: mainInfo.data.weight,
         image: mainInfo.data.sprites.front_default,
