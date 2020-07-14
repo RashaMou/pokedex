@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import Autocomplete, { filterOptions } from '@material-ui/lab';
 import SearchIcon from '@material-ui/icons/Search';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
@@ -44,40 +45,52 @@ const SearchBar = (props) => {
   const { isDarkTheme } = useContext(ThemeContext);
   const { getPokemon } = useContext(PokemonContext);
 
-  const [query, setQuery] = useState('');
   const { classes } = props;
 
-  const handleChange = (e) => {
-    setQuery(e.target.value);
-    console.log(query);
-  };
   return (
-    <TextField
-      label='Search'
-      onChange={handleChange}
-      className={`${
-        isDarkTheme ? classes.rootDarkTheme : classes.rootLightTheme
-      }`}
-      value={query}
-      InputProps={{
-        classes: {
-          input: `${
-            isDarkTheme ? classes.inputDarkTheme : classes.inputLightTheme
-          }`,
-        },
-        endAdornment: (
-          <InputAdornment>
-            <IconButton onClick={() => getPokemon(query)}>
-              <SearchIcon
-                className={`${
+    <div style={{ width: '300px' }}>
+      <Autocomplete
+        onChange={(event, newValue) => {
+          getPokemon(newValue);
+        }}
+        openOnFocus={false}
+        onMouseDownCapture={(e) => e.stopPropagation()}
+        id='search'
+        filterOptions={filterOptions}
+        options={data?.results.map((option) => option.name)}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            label='Search'
+            margin='normal'
+            className={`${
+              isDarkTheme ? classes.rootDarkTheme : classes.rootLightTheme
+            }`}
+            InputProps={{
+              ...params.InputProps,
+              classes: {
+                input: `${
                   isDarkTheme ? classes.inputDarkTheme : classes.inputLightTheme
-                }`}
-              />
-            </IconButton>
-          </InputAdornment>
-        ),
-      }}
-    />
+                }`,
+              },
+              endAdornment: (
+                <InputAdornment>
+                  <IconButton>
+                    <SearchIcon
+                      className={`${
+                        isDarkTheme
+                          ? classes.inputDarkTheme
+                          : classes.inputLightTheme
+                      }`}
+                    />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+        )}
+      />
+    </div>
   );
 };
 
