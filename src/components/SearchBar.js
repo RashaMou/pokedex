@@ -1,11 +1,13 @@
 import React, { useState, useContext } from 'react';
+import { useQuery } from 'react-query';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import Autocomplete, { filterOptions } from '@material-ui/lab';
+import { Autocomplete, createFilterOptions } from '@material-ui/lab';
 import SearchIcon from '@material-ui/icons/Search';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import { withStyles } from '@material-ui/core/styles';
 import { ThemeContext, PokemonContext } from '../contexts';
+import { fetchAllPokemon } from '../utils';
 
 const styles = {
   rootDarkTheme: {
@@ -44,6 +46,7 @@ const styles = {
 const SearchBar = (props) => {
   const { isDarkTheme } = useContext(ThemeContext);
   const { getPokemon } = useContext(PokemonContext);
+  const { data: pokemon } = useQuery('pokemon', fetchAllPokemon);
 
   const { classes } = props;
 
@@ -57,7 +60,7 @@ const SearchBar = (props) => {
         onMouseDownCapture={(e) => e.stopPropagation()}
         id='search'
         filterOptions={filterOptions}
-        options={data?.results.map((option) => option.name)}
+        options={pokemon?.results.map((option) => option.name)}
         renderInput={(params) => (
           <TextField
             {...params}
