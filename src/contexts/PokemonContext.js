@@ -23,8 +23,8 @@ export const PokemonContextProvider = (props) => {
       const res = await axios.get(
         `https://pokeapi.co/api/v2/pokemon/${nameOrId}/`
       );
-      const color = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon-color/${nameOrId}/`
+      const species = await axios.get(
+        `https://pokeapi.co/api/v2/pokemon-species/${nameOrId}/`
       );
       const type = await axios.get(
         `https://pokeapi.co/api/v2/type/${nameOrId}/`
@@ -36,7 +36,7 @@ export const PokemonContextProvider = (props) => {
         height: res.data.height,
         weight: res.data.weight,
         image: res.data.sprites.front_default,
-        color: setPokemonBackgroundColor(color.data.name),
+        color: setPokemonBackgroundColor(species.data.color.name),
         type: type.data.name,
       });
     } catch (error) {
