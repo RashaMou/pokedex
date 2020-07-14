@@ -104,6 +104,19 @@ export default function PokemonCard() {
                   </div>
                 </div>
               </div>
+              <div className='card-bottom-content'>
+                {pokemon.types?.map((type, idx) => {
+                  return (
+                    <>
+                      <img
+                        src={require(`../assets/pokemonTypeIcons/${type}.png`)}
+                        alt={type}
+                        className='type'
+                      />
+                    </>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
