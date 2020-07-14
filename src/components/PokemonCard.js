@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
-import LazyLoad from 'react-lazyload';
+import React, { useEffect, useContext } from 'react';
 import { NavigateBefore, NavigateNext } from '@material-ui/icons';
 import { PokemonContext } from '../contexts';
 import { IconButton } from '@material-ui/core';
@@ -9,25 +8,23 @@ import ProgressBar from './ProgressBar';
 
 export default function PokemonCard() {
   const { getPokemon, pokemon } = useContext(PokemonContext);
-  const [slideIn, setSlideIn] = useState('');
 
   const getNext = async () => {
     getPokemon(pokemon.id + 1);
-    setSlideIn('next');
   };
 
   const getPrevious = async () => {
     await getPokemon(pokemon.id - 1);
-    setSlideIn('previous');
   };
 
-  // load first Pokemon when component mounts
+  // Load Pokemon with id=1 when component mounts
   useEffect(() => {
     getPokemon(1);
     const col = setPokemonBackgroundColor('black');
     console.log('col', col);
   }, []);
 
+  // Link to higher quality Pokemon images than PokeApi sprite images.
   const pokemonImage = `https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`;
 
   return (
@@ -40,18 +37,15 @@ export default function PokemonCard() {
             <IconButton onClick={() => getPrevious()}>
               <NavigateBefore className='nav-icon' />
             </IconButton>
-            <LazyLoad height={200} width={300}>
-              <img
-                src={pokemonImage}
-                alt={pokemon.name}
-                className='pokemon-img'
-              />
-            </LazyLoad>
+            <img
+              src={pokemonImage}
+              alt={pokemon.name}
+              className='pokemon-img'
+            />
             <IconButton onClick={() => getNext()}>
               <NavigateNext className='nav-icon' />
             </IconButton>
           </div>
-
           <div className='info-bg'>
             <div className='card-content'>
               <div

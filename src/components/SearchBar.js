@@ -1,13 +1,17 @@
+/**
+ * Search bar element uses Material UI autocomplete component.
+ * When app mounts, react-query library fetches and caches all
+ * Pokemon names which the search can filter through and pass to the
+ * getPokemon function that calls the API
+ */
+
 import React, { useState, useContext } from 'react';
 import { useQuery } from 'react-query';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import { Autocomplete, createFilterOptions } from '@material-ui/lab';
-import SearchIcon from '@material-ui/icons/Search';
 import TextField from '@material-ui/core/TextField';
-import IconButton from '@material-ui/core/IconButton';
-import { withStyles } from '@material-ui/core/styles';
 import { ThemeContext, PokemonContext } from '../contexts';
 import { fetchAllPokemon } from '../utils';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
   rootDarkTheme: {
@@ -51,8 +55,10 @@ const SearchBar = (props) => {
 
   const { classes } = props;
 
+  // Limits autocomplete suggestions to 5 Pokemon
+  // Starts matching from the start of the Pokemon name
   const filterOptions = createFilterOptions({
-    limit: 4,
+    limit: 5,
     matchFrom: 'start',
   });
 
@@ -63,7 +69,6 @@ const SearchBar = (props) => {
           getPokemon(value);
           setQuery('');
         }}
-        // selectOnFocus={true}
         onInputChange={(event, value) => setQuery(value)}
         openOnFocus={false}
         onMouseDownCapture={(e) => e.stopPropagation()}

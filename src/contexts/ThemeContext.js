@@ -1,7 +1,7 @@
 /*
  * Context API manages theme switching and storing user theme to local storage.
  * ThemeContext is called in App.js to set global theme, in ToggleTheme.js to capture the toggled
- * state, and in SearchBar.js for Material UI specific theming
+ * state, and in SearchBar.js for Material UI specific theming.
  */
 
 import React, { createContext } from 'react';

@@ -21,12 +21,21 @@ export const PokemonContextProvider = (props) => {
   // Main function to get Pokemon info from API
   const getPokemon = async (nameOrId) => {
     try {
+      // get Pokemon's main info
       const mainInfo = await axios.get(
         `https://pokeapi.co/api/v2/pokemon/${nameOrId}/`
       );
+
+      // get species info
       const species = await axios.get(
         `https://pokeapi.co/api/v2/pokemon-species/${nameOrId}/`
       );
+
+      /*
+       * Types and stats returned as nested array objects.
+       * These functions extract the required values from each into an array
+       * that can be mapped over in the PokemonCard component
+       */
       const typesArray = mainInfo.data.types.map((item) => {
         return item.type.name;
       });
@@ -36,7 +45,8 @@ export const PokemonContextProvider = (props) => {
           stat: item.base_stat,
         };
       });
-      console.log(statsArray);
+
+      // set results to state
       setPokemon({
         threeNumberId: threeNumberId(mainInfo.data.id),
         id: mainInfo.data.id,
@@ -45,7 +55,6 @@ export const PokemonContextProvider = (props) => {
         weight: mainInfo.data.weight,
         image: mainInfo.data.sprites.front_default,
         color: setPokemonBackgroundColor(species.data.color.name),
-        // habitat: species.data.habitat.name,
         types: typesArray,
         stats: statsArray,
       });

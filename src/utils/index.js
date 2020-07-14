@@ -1,17 +1,15 @@
 /**************************************************************************
- * utility function that returns a random number between 1 and 807
+ * Return a random number between 1 and 964 to get random Pokemon
  * (the total number of pokemon in the pokeapi)
- * I'm using https://pokeres.bastionbot.org for images because the sprites
- * in the pokeapi are very lo-res
  **************************************************************************/
 
 export const getRandomNumber = () => {
   return Math.floor(Math.random() * Math.floor(807));
 };
 
-/******************************************
- * Fetcher utility functions for react-query library
- ******************************************/
+/**************************************************************************
+ * Fetcher function for react-query library
+ **************************************************************************/
 
 export const fetchAllPokemon = async () => {
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=1000/`);
@@ -19,9 +17,10 @@ export const fetchAllPokemon = async () => {
   return data;
 };
 
-/******************************************
- * Pokemon Colors
- ******************************************/
+/*****************************************************************************
+ * Dynamically set the background color of the Pokemon card header
+ * depending on the color returned from the api
+ *****************************************************************************/
 
 const colors = [
   {
@@ -86,9 +85,10 @@ export const setPokemonBackgroundColor = (colorname) => {
   return col;
 };
 
-/******************************************
- * Pokemon ID Number
- ******************************************/
+/****************************************************************************
+ * Change Pokemon ID number from 1 digit to 3 for stylistic purposes
+ * e.g. 001, 092
+ ****************************************************************************/
 
 export const threeNumberId = (id) => {
   if (id < 10) {
