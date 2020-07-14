@@ -1,11 +1,13 @@
-import React, { useState, useContext, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useContext } from 'react';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import Autocomplete, {
+  createFilterOptions,
+} from '@material-ui/lab/Autocomplete';
 import SearchIcon from '@material-ui/icons/Search';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import { withStyles } from '@material-ui/core/styles';
-import { ThemeContext, PokemonContext } from '../contexts';
+import { ThemeContext } from '../contexts';
 import { useQuery } from 'react-query';
 import { fetchAllPokemon } from '../utils';
 
@@ -48,61 +50,59 @@ const styles = {
 const SearchBar = (props) => {
   const { isDarkTheme } = useContext(ThemeContext);
   const { data } = useQuery('pokemons', fetchAllPokemon);
-  const [poke, setPoke] = useState([]);
+  const [value, setValue] = useState('');
 
-  const [query, setQuery] = useState('');
   const { classes } = props;
 
-  useEffect(() => {
-    if (data) {
-      const characters = data.results.filter((character) =>
-        character.name.toLowerCase().includes(query.toLowerCase())
-      );
-      setPoke(characters);
-    }
-  }, [query]);
-
-  const handleChange = (e) => {
-    setQuery(e.target.value);
-  };
+  const filterOptions = createFilterOptions({
+    limit: 4,
+    matchFrom: 'start',
+  });
 
   return (
-    <>
-      <TextField
-        label='Search'
-        onChange={handleChange}
-        className={`${
-          isDarkTheme ? classes.rootDarkTheme : classes.rootLightTheme
-        }`}
-        value={query}
-        InputProps={{
-          classes: {
-            input: `${
-              isDarkTheme ? classes.inputDarkTheme : classes.inputLightTheme
-            }`,
-          },
-          endAdornment: (
-            <InputAdornment>
-              <IconButton>
-                <SearchIcon
-                  className={`${
-                    isDarkTheme
-                      ? classes.inputDarkTheme
-                      : classes.inputLightTheme
-                  }`}
-                />
-              </IconButton>
-            </InputAdornment>
-          ),
+    <div style={{ width: '300px' }}>
+      <Autocomplete
+        onChange={(event, newValue) => {
+          setValue(newValue);
         }}
+        openOnFocus={false}
+        onMouseDownCapture={(e) => e.stopPropagation()}
+        id='search'
+        filterOptions={filterOptions}
+        options={data?.results.map((option) => option.name)}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            label='Search'
+            margin='normal'
+            className={`${
+              isDarkTheme ? classes.rootDarkTheme : classes.rootLightTheme
+            }`}
+            InputProps={{
+              ...params.InputProps,
+              classes: {
+                input: `${
+                  isDarkTheme ? classes.inputDarkTheme : classes.inputLightTheme
+                }`,
+              },
+              endAdornment: (
+                <InputAdornment>
+                  <IconButton>
+                    <SearchIcon
+                      className={`${
+                        isDarkTheme
+                          ? classes.inputDarkTheme
+                          : classes.inputLightTheme
+                      }`}
+                    />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+        )}
       />
-      <div>
-        {query.length > 0 &&
-          poke.map((item, index) => {
-            return <p key={index}>{item.name}</p>;
-          })}
-      </div>
-    </>
+    </div>
   );
 };
 
