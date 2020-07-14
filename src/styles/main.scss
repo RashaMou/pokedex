@@ -15,10 +15,8 @@
   }
 }
 
-.toggle-search-container {
-  display: flex;
-  justify-content: space-between;
-  width: 95%;
+.MuiInputBase-root {
+  padding-right: 0px;
 }
 
 .header-title {
@@ -44,68 +42,70 @@
 }
 
 .card-container {
+  width: 100%;
   display: flex;
-  margin-top: 10%;
   justify-content: center;
-  .card {
-    width: 300px;
-    animation: zoomIn 1s;
+  height: 50%;
+  align-items: center;
+}
 
-    .card-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
+.card {
+  animation: zoomIn 1s;
+  display: flex;
+  // width: 20%;
 
-    .MuiCardMedia-img {
-      background-color: #ffd54e;
-      border-radius: 5px;
-    }
+  .img-container {
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-    .slide-right {
-      animation: slide-right 0.3s forwards;
-    }
+  .pokemon-img {
+    width: 200px;
+  }
 
-    .slide-left {
-      animation: slide-left 0.5s backwards;
-    }
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
-    .navigation {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
+  .navigation {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 
-      .nav-icon {
-        font-size: 4rem;
-        &:hover {
-          cursor: pointer;
-        }
+    .nav-icon {
+      // font-size: 4rem;
+      height: 30px;
+      width: 30px;
+      &:hover {
+        cursor: pointer;
       }
     }
+  }
 
-    .info-bg {
-      margin-top: 10px;
-      background-color: #ffd54e;
-      padding: 0.5rem;
-      border-radius: 5px;
-      width: 100%;
-    }
+  .info-bg {
+    background-color: #ffd54e;
+    padding: 0.5rem;
+    width: 400px;
+  }
 
-    .typography {
-      display: flex;
-      flex-direction: column;
-    }
+  .typography {
+    display: flex;
+    flex-direction: column;
+  }
 
-    .poke-id {
-      font-size: 1.2rem;
-      text-align: center;
-      align-self: center;
-    }
+  .poke-id {
+    font-size: 1.2rem;
+    text-align: center;
+    align-self: center;
+  }
 
-    .info {
-      font-size: 1rem;
-    }
+  .info {
+    font-size: 1rem;
   }
 }
 
