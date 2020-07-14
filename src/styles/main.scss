@@ -52,38 +52,24 @@
 .card {
   animation: zoomIn 1s;
   display: flex;
-  // width: 20%;
 
   .img-container {
     width: 400px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 20px;
   }
 
   .pokemon-img {
     width: 200px;
   }
 
-  .card-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .navigation {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-
-    .nav-icon {
-      // font-size: 4rem;
-      height: 30px;
-      width: 30px;
-      &:hover {
-        cursor: pointer;
-      }
+  .nav-icon {
+    height: 30px;
+    width: 30px;
+    &:hover {
+      cursor: pointer;
     }
   }
 

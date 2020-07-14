@@ -47,15 +47,24 @@ const SearchBar = (props) => {
   const { isDarkTheme } = useContext(ThemeContext);
   const { getPokemon } = useContext(PokemonContext);
   const { data: pokemon } = useQuery('pokemon', fetchAllPokemon);
+  const [query, setQuery] = useState('');
 
   const { classes } = props;
+
+  const filterOptions = createFilterOptions({
+    limit: 4,
+    matchFrom: 'start',
+  });
 
   return (
     <div style={{ width: '300px' }}>
       <Autocomplete
-        onChange={(event, newValue) => {
-          getPokemon(newValue);
+        onChange={(event, value) => {
+          getPokemon(value);
+          setQuery('');
         }}
+        selectOnFocus={true}
+        onInputChange={(event, value) => setQuery(value)}
         openOnFocus={false}
         onMouseDownCapture={(e) => e.stopPropagation()}
         id='search'
@@ -64,6 +73,7 @@ const SearchBar = (props) => {
         renderInput={(params) => (
           <TextField
             {...params}
+            value={query}
             label='Search'
             margin='normal'
             className={`${
@@ -76,19 +86,6 @@ const SearchBar = (props) => {
                   isDarkTheme ? classes.inputDarkTheme : classes.inputLightTheme
                 }`,
               },
-              endAdornment: (
-                <InputAdornment>
-                  <IconButton>
-                    <SearchIcon
-                      className={`${
-                        isDarkTheme
-                          ? classes.inputDarkTheme
-                          : classes.inputLightTheme
-                      }`}
-                    />
-                  </IconButton>
-                </InputAdornment>
-              ),
             }}
           />
         )}
