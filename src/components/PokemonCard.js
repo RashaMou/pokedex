@@ -62,38 +62,46 @@ export default function PokemonCard() {
                 </div>
                 <h2 className='name'>{pokemon.name}</h2>
               </div>
-              <div className='height-weight-container'>
-                <div className='height-weight'>
-                  <h3 className='info'>Height</h3>
-                  <p>{pokemon.height}</p>
+              <div className='card-info-container'>
+                <div className='height-weight-container'>
+                  <div className='height-weight'>
+                    <h3 className='info-title'>Height</h3>
+                    <p>{pokemon.height} dm</p>
+                  </div>
+                  <div className='height-weight'>
+                    <h3 className='info-title'>Weight</h3>
+                    <p>{pokemon.weight} hg</p>
+                  </div>
                 </div>
-                <div className='height-weight'>
-                  <h3 className='info'>Weight</h3>
-                  <p>{pokemon.weight}</p>
-                </div>
-              </div>
-              <div className='card-bottom-content'>
-                {pokemon.types?.map((type, idx) => {
-                  return (
-                    <>
-                      <img
-                        src={require(`../assets/pokemonTypeIcons/${type}.png`)}
-                        alt={type}
-                        className='type'
-                      />
-                      <p>{type}</p>
-                    </>
-                  );
-                })}
-                <div>
-                  {pokemon.stats?.map((item, idx) => {
-                    return (
-                      <>
-                        <p>{item.name}</p>
-                        <ProgressBar stat={item.stat} />
-                      </>
-                    );
-                  })}
+                <div className='card-bottom-content'>
+                  <div className='type-container'>
+                    <h3 className='info-title'>Type</h3>
+                    <div className='inner-type-container'>
+                      {pokemon.types?.map((type, idx) => {
+                        return (
+                          <>
+                            <img
+                              src={require(`../assets/pokemonTypeIcons/${type}.png`)}
+                              alt={type}
+                              className='type'
+                            />
+                            <p>{type}</p>
+                          </>
+                        );
+                      })}
+                    </div>
+                  </div>
+                  <div className='stats-container'>
+                    <h3 className='info-title'>Stats</h3>
+                    {pokemon.stats?.map((item, idx) => {
+                      return (
+                        <div key={idx} className='stats'>
+                          <p>{item.name}</p>
+                          <ProgressBar stat={item.stat} />
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             </div>

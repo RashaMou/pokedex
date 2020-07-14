@@ -11,7 +11,8 @@ const normalizeStat = (value) => ((value - 0) * 100) / (255 - 0);
 
 const BorderLinearProgress = withStyles((theme) => ({
   root: {
-    height: 10,
+    height: 12,
+    borderRadius: 2,
   },
   colorPrimary: {
     backgroundColor:

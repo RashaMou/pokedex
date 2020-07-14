@@ -2,13 +2,24 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  height: 50%;
-  align-items: center;
+  margin-top: 5rem;
 }
 
 .card {
-  animation: zoomIn 1s;
+  animation: zoomIn 500ms;
   display: flex;
+  justify-content: space-between;
+  width: 60%;
+}
+
+@keyframes zoomIn {
+  0% {
+    transform: scale3d(0.3, 0.3, 0.3);
+    opacity: 0;
+  }
+  50% {
+    opcaity: 1;
+  }
 }
 
 .nav-icon {
@@ -20,11 +31,11 @@
 }
 
 .pokemon-img {
-  width: 200px;
+  width: 250px;
 }
 
 .info-bg {
-  background-color: #ffd54e;
+  //   background-color: #ffd54e;
   width: 400px;
   box-shadow: -1px 0 1px rgba(0, 0, 0, 0.24);
 
@@ -53,30 +64,70 @@
   }
 }
 .name {
+  font-family: 'Montserrat', sans-serif;
   font-size: 1.5rem;
   margin-left: 15px;
   color: white;
   text-align: center;
   font-weight: bold;
 }
-.height-weight-container {
-  display: flex;
-  justify-content: space-around;
-  border-bottom: 1px solid black;
-  .height-weight {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    .info {
-      font-size: 1rem;
-    }
-  }
+
+.card-info-container {
 }
 
 .card-bottom-content {
   display: flex;
+  flex-direction: column;
+  padding: 1rem;
   .type {
     width: 30px;
     height: 30px;
+    margin-right: 5px;
+  }
+}
+
+.type-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+  .inner-type-container {
+    display: flex;
+    margin-right: 20px;
+    p {
+      margin-right: 1rem;
+    }
+  }
+}
+.height-weight-container {
+  display: flex;
+  padding: 0.5rem 0 0.5rem 0;
+  justify-content: space-around;
+
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.24), 0 4px 4px rgba(0, 0, 0, 0.12);
+
+  .height-weight {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.info-title {
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.1em;
+  font-size: 1rem;
+  font-weight: bold;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.stats-container {
+  .stats {
+    display: flex;
+    align-items: baseline;
+
+    p {
+      margin-right: 0.5rem;
+    }
   }
 }
