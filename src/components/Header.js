@@ -15,6 +15,7 @@ const Header = () => {
           <SearchBar />
         </div>
         <h1 className='header-title title is-1'>Pokedex</h1>
+
         <Button
           variant='contained'
           color='default'

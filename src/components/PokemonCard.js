@@ -1,16 +1,13 @@
 import React, { useEffect, useState, useContext } from 'react';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { NavigateBefore, NavigateNext } from '@material-ui/icons';
 import { PokemonContext } from '../contexts';
 import { IconButton } from '@material-ui/core';
 import pokeball from '../assets/pokeball.png';
+import { setPokemonBackgroundColor } from '../utils';
 
 export default function PokemonCard() {
-  const { getPokemon, pokemon } = useContext(PokemonContext);
+  const { getPokemon, pokemon, pokemonColor } = useContext(PokemonContext);
   const [slideIn, setSlideIn] = useState('');
 
   const getNext = async () => {
@@ -26,6 +23,8 @@ export default function PokemonCard() {
   // load first Pokemon when component mounts
   useEffect(() => {
     getPokemon(1);
+    const col = setPokemonBackgroundColor('black');
+    console.log('col', col);
   }, []);
 
   return (
@@ -50,7 +49,9 @@ export default function PokemonCard() {
 
           <div className='info-bg'>
             <div className='card-content'>
+              <div style={{ background: pokemonColor, height: '100px' }}></div>
               <h2>{pokemon.name}</h2>
+              <h2>{pokemonColor}</h2>
               <Typography
                 variant='body2'
                 color='textSecondary'
