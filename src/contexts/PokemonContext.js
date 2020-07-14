@@ -45,7 +45,7 @@ export const PokemonContextProvider = (props) => {
         weight: mainInfo.data.weight,
         image: mainInfo.data.sprites.front_default,
         color: setPokemonBackgroundColor(species.data.color.name),
-        habitat: species.data.habitat.name,
+        // habitat: species.data.habitat.name,
         types: typesArray,
         stats: statsArray,
       });
