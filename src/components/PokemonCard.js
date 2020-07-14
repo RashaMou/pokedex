@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react';
 import LazyLoad from 'react-lazyload';
-import Typography from '@material-ui/core/Typography';
 import { NavigateBefore, NavigateNext } from '@material-ui/icons';
 import { PokemonContext } from '../contexts';
 import { IconButton } from '@material-ui/core';
 import pokeball from '../assets/pokeball.png';
 import { setPokemonBackgroundColor } from '../utils';
+import ProgressBar from './ProgressBar';
 
 export default function PokemonCard() {
   const { getPokemon, pokemon } = useContext(PokemonContext);
@@ -91,6 +91,16 @@ export default function PokemonCard() {
                     </>
                   );
                 })}
+                <div>
+                  {pokemon.stats?.map((item, idx) => {
+                    return (
+                      <>
+                        <p>{item.name}</p>
+                        <ProgressBar stat={item.stat} />
+                      </>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>

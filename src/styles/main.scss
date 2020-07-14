@@ -44,8 +44,11 @@
     width: 100%;
   }
 
-  .button {
+  .MuiButton-contained {
     width: 9rem;
+    background-color: 'red';
+    color: 'white';
+    background-color: #ff3d00;
   }
 }
 

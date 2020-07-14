@@ -18,7 +18,6 @@ const Header = () => {
 
         <Button
           variant='contained'
-          color='default'
           startIcon={<FlareIcon />}
           className='button'
           onClick={() => getPokemon(randomPokemon)}

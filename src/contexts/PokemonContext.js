@@ -18,27 +18,36 @@ export const PokemonContextProvider = (props) => {
   const [pokemon, setPokemon] = useState({});
   const randomPokemon = getRandomNumber();
 
+  // Main function to get Pokemon info from API
   const getPokemon = async (nameOrId) => {
     try {
-      const res = await axios.get(
+      const mainInfo = await axios.get(
         `https://pokeapi.co/api/v2/pokemon/${nameOrId}/`
       );
       const species = await axios.get(
         `https://pokeapi.co/api/v2/pokemon-species/${nameOrId}/`
       );
-      const typesArray = res.data.types.map((item) => {
+      const typesArray = mainInfo.data.types.map((item) => {
         return item.type.name;
       });
+      const statsArray = mainInfo.data.stats.map((item) => {
+        return {
+          name: item.stat.name,
+          stat: item.base_stat,
+        };
+      });
+      console.log(statsArray);
       setPokemon({
-        threeNumberId: threeNumberId(res.data.id),
-        id: res.data.id,
-        name: res.data.name.toUpperCase(),
-        height: res.data.height,
-        weight: res.data.weight,
-        image: res.data.sprites.front_default,
+        threeNumberId: threeNumberId(mainInfo.data.id),
+        id: mainInfo.data.id,
+        name: mainInfo.data.name.toUpperCase(),
+        height: mainInfo.data.height,
+        weight: mainInfo.data.weight,
+        image: mainInfo.data.sprites.front_default,
         color: setPokemonBackgroundColor(species.data.color.name),
         habitat: species.data.habitat.name,
         types: typesArray,
+        stats: statsArray,
       });
     } catch (error) {
       console.log(error);
