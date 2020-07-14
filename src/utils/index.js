@@ -37,7 +37,7 @@ const colors = [
   {
     name: 'yellow',
     gradient:
-      'linear-gradient(180deg,rgba(255, 213, 78, 1) 36%,rgba(255, 255, 255, 1) 100%)',
+      'linear-gradient(180deg, rgba(255,213,78,1) 37%, rgba(247,220,134,1) 94%)',
   },
   {
     name: 'green',

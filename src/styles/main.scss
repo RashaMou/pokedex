@@ -73,6 +73,10 @@
     width: 200px;
   }
 
+  .card-content {
+    padding: 0;
+  }
+
   .nav-icon {
     height: 30px;
     width: 30px;
@@ -83,19 +87,25 @@
 
   .info-bg {
     background-color: #ffd54e;
-    padding: 0.5rem;
     width: 400px;
+    box-shadow: -1px 0 1px rgba(0, 0, 0, 0.24);
+
+    .pokeball-small {
+      width: 30px;
+    }
+
+    .ball-container {
+      display: flex;
+      .poke-id {
+        color: white;
+        font-size: 1.2rem;
+      }
+    }
   }
 
   .typography {
     display: flex;
     flex-direction: column;
-  }
-
-  .poke-id {
-    font-size: 1.2rem;
-    text-align: center;
-    align-self: center;
   }
 
   .info {

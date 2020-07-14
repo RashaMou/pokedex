@@ -49,16 +49,31 @@ export default function PokemonCard() {
 
           <div className='info-bg'>
             <div className='card-content'>
-              <div style={{ background: pokemonColor, height: '100px' }}></div>
+              <div
+                style={{
+                  background: pokemonColor,
+                  height: '100px',
+                  width: '100%',
+                  boxShadow:
+                    '0 1px 1px rgba(0, 0, 0, 0.24), 0 4px 4px rgba(0, 0, 0, 0.12)',
+                }}
+              >
+                <div className='ball-container'>
+                  <img
+                    src={pokeball}
+                    alt='pokeball'
+                    className='pokeball-small'
+                  />
+                  <p style={styles.pokeid}> {pokemon.id}</p>
+                </div>
+              </div>
               <h2>{pokemon.name}</h2>
-              <h2>{pokemonColor}</h2>
               <Typography
                 variant='body2'
                 color='textSecondary'
                 component='p'
                 className='typography'
               >
-                <span className='poke-id'>#{pokemon.id}</span>
                 <br />
                 <span className='info'>Height: {pokemon.height}</span>
                 <br />
@@ -71,3 +86,10 @@ export default function PokemonCard() {
     </div>
   );
 }
+
+const styles = {
+  pokeid: {
+    color: 'white',
+    fontSize: '1.2rem',
+  },
+};
