@@ -6,13 +6,16 @@
 import React, { createContext, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { getRandomNumber, setPokemonBackgroundColor } from '../utils';
+import {
+  getRandomNumber,
+  setPokemonBackgroundColor,
+  threeNumberId,
+} from '../utils';
 
 export const PokemonContext = createContext();
 
 export const PokemonContextProvider = (props) => {
   const [pokemon, setPokemon] = useState({});
-  const [pokemonColor, setPokemonColor] = useState('');
   const randomPokemon = getRandomNumber();
 
   const getPokemon = async (nameOrId) => {
@@ -20,29 +23,29 @@ export const PokemonContextProvider = (props) => {
       const res = await axios.get(
         `https://pokeapi.co/api/v2/pokemon/${nameOrId}/`
       );
+      const color = await axios.get(
+        `https://pokeapi.co/api/v2/pokemon-color/${nameOrId}/`
+      );
+      const type = await axios.get(
+        `https://pokeapi.co/api/v2/type/${nameOrId}/`
+      );
       setPokemon({
+        threeNumberId: threeNumberId(res.data.id),
         id: res.data.id,
         name: res.data.name.toUpperCase(),
         height: res.data.height,
         weight: res.data.weight,
         image: res.data.sprites.front_default,
+        color: setPokemonBackgroundColor(color.data.name),
+        type: type.data.name,
       });
-      const color = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon-color/${nameOrId}/`
-      );
-      console.log(typeof color.data.name);
-      const bgcolor = setPokemonBackgroundColor(color.data.name);
-      console.log('bgcolor', bgcolor);
-      setPokemonColor(bgcolor);
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <PokemonContext.Provider
-      value={{ getPokemon, pokemon, randomPokemon, pokemonColor }}
-    >
+    <PokemonContext.Provider value={{ getPokemon, pokemon, randomPokemon }}>
       {props.children}
     </PokemonContext.Provider>
   );

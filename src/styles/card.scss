@@ -1,0 +1,82 @@
+.card-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 50%;
+  align-items: center;
+}
+
+.card {
+  animation: zoomIn 1s;
+  display: flex;
+}
+
+.nav-icon {
+  height: 30px;
+  width: 30px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.pokemon-img {
+  width: 200px;
+}
+
+.info-bg {
+  background-color: #ffd54e;
+  width: 400px;
+  box-shadow: -1px 0 1px rgba(0, 0, 0, 0.24);
+
+  .card-content {
+    padding: 0;
+  }
+}
+
+.card-header-background {
+  height: 100px;
+  width: 100%;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.24), 0 4px 4px rgba(0, 0, 0, 0.12);
+}
+.ball-container {
+  display: flex;
+
+  .pokeball-small {
+    width: 30px;
+    margin: 10px 0 0 10px;
+  }
+  .poke-id {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 10px 0 0 10px;
+  }
+}
+.name {
+  font-size: 1.5rem;
+  margin-left: 15px;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+}
+.height-weight-container {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid black;
+  .height-weight {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .info {
+      font-size: 1rem;
+    }
+  }
+}
+
+.card-bottom-content {
+  display: flex;
+  .type {
+    width: 30px;
+    height: 30px;
+  }
+}

@@ -72,7 +72,7 @@ const colors = [
   {
     name: 'pink',
     gradient:
-      'linear-gradient(180deg, rgba(221,18,109,1) 37%, rgba(179,131,152,1) 97%)',
+      'linear-gradient(180deg, rgba(212,83,143,1) 37%, rgba(223,152,186,1) 91%)',
   },
 ];
 
@@ -84,4 +84,18 @@ export const setPokemonBackgroundColor = (colorname) => {
     }
   });
   return col;
+};
+
+/******************************************
+ * Pokemon ID Number
+ ******************************************/
+
+export const threeNumberId = (id) => {
+  if (id < 10) {
+    return '00' + id.toString();
+  } else if (id < 100) {
+    return '0' + id.toString();
+  } else {
+    return id;
+  }
 };

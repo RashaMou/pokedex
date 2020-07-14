@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
+import LazyLoad from 'react-lazyload';
 import Typography from '@material-ui/core/Typography';
 import { NavigateBefore, NavigateNext } from '@material-ui/icons';
 import { PokemonContext } from '../contexts';
@@ -7,7 +8,7 @@ import pokeball from '../assets/pokeball.png';
 import { setPokemonBackgroundColor } from '../utils';
 
 export default function PokemonCard() {
-  const { getPokemon, pokemon, pokemonColor } = useContext(PokemonContext);
+  const { getPokemon, pokemon } = useContext(PokemonContext);
   const [slideIn, setSlideIn] = useState('');
 
   const getNext = async () => {
@@ -27,21 +28,25 @@ export default function PokemonCard() {
     console.log('col', col);
   }, []);
 
+  const pokemonImage = `https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`;
+
   return (
     <div className='card-container'>
       {!pokemon ? (
         <img src={pokeball} alt='pokeball spinner' className='pokeball' />
       ) : (
         <div className='card'>
-          <div className='img-container'>
+          <div style={styles.imageContainer}>
             <IconButton onClick={() => getPrevious()}>
               <NavigateBefore className='nav-icon' />
             </IconButton>
-            <img
-              src={`https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`}
-              alt={pokemon.name}
-              className='pokemon-img'
-            />
+            <LazyLoad height={200} width={300}>
+              <img
+                src={pokemonImage}
+                alt={pokemon.name}
+                className='pokemon-img'
+              />
+            </LazyLoad>
             <IconButton onClick={() => getNext()}>
               <NavigateNext className='nav-icon' />
             </IconButton>
@@ -50,13 +55,8 @@ export default function PokemonCard() {
           <div className='info-bg'>
             <div className='card-content'>
               <div
-                style={{
-                  background: pokemonColor,
-                  height: '100px',
-                  width: '100%',
-                  boxShadow:
-                    '0 1px 1px rgba(0, 0, 0, 0.24), 0 4px 4px rgba(0, 0, 0, 0.12)',
-                }}
+                className='card-header-background'
+                style={{ background: pokemon.color }}
               >
                 <div className='ball-container'>
                   <img
@@ -64,21 +64,30 @@ export default function PokemonCard() {
                     alt='pokeball'
                     className='pokeball-small'
                   />
-                  <p style={styles.pokeid}> {pokemon.id}</p>
+                  <p className='poke-id'> {pokemon.threeNumberId}</p>
+                </div>
+                <h2 className='name'>{pokemon.name}</h2>
+              </div>
+              <div className='height-weight-container'>
+                <div className='height-weight'>
+                  <h3 className='info'>Height</h3>
+                  <p>{pokemon.height}</p>
+                </div>
+                <div className='height-weight'>
+                  <h3 className='info'>Weight</h3>
+                  <p>{pokemon.weight}</p>
                 </div>
               </div>
-              <h2>{pokemon.name}</h2>
-              <Typography
-                variant='body2'
-                color='textSecondary'
-                component='p'
-                className='typography'
-              >
-                <br />
-                <span className='info'>Height: {pokemon.height}</span>
-                <br />
-                <span className='info'>Weight: {pokemon.weight}</span>
-              </Typography>
+              <div className='card-bottom-content'>
+                {pokemon.type && (
+                  <img
+                    src={require(`../assets/pokemonTypeIcons/${pokemon.type}.png`)}
+                    alt={pokemon.type}
+                    className='type'
+                  />
+                )}
+                <p>{pokemon.type} Pokemon</p>
+              </div>
             </div>
           </div>
         </div>
@@ -88,8 +97,11 @@ export default function PokemonCard() {
 }
 
 const styles = {
-  pokeid: {
-    color: 'white',
-    fontSize: '1.2rem',
+  imageContainer: {
+    width: '400px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: '20px 0 20px 0',
   },
 };
