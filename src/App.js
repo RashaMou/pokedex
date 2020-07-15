@@ -22,19 +22,6 @@ function App({ renderMobile, renderDesktop }) {
         <PokemonCard breakpoint={breakpoint} />
       </div>
     </PokemonContextProvider>
-    // <PokemonContextProvider>
-    //   <div className={`${!isDarkTheme ? 'lightTheme' : 'darkTheme'}`}>
-    //     {width > breakpoint ? (
-    //       <>
-    //         <Route path='/:id' component={PokemonCard} />
-    //         <Header />
-    //         <PokemonCard />
-    //       </>
-    //     ) : (
-    //       <div>GOODBYE</div>
-    //     )}
-    //   </div>
-    // </PokemonContextProvider>
   );
 }
 
