@@ -1,13 +1,16 @@
 import React, { useEffect, useContext } from 'react';
 import { NavigateBefore, NavigateNext } from '@material-ui/icons';
-import { PokemonContext } from '../contexts';
+import { PokemonContext, useWindowDimensions, ThemeContext } from '../contexts';
 import { IconButton } from '@material-ui/core';
 import pokeball from '../assets/pokeball.png';
 import { setPokemonBackgroundColor, capitalizeFirstLetter } from '../utils';
 import ProgressBar from './ProgressBar';
+import SearchBar from './SearchBar';
 
-export default function PokemonCard() {
+export default function PokemonCard({ breakpoint }) {
+  const { width } = useWindowDimensions();
   const { getPokemon, pokemon } = useContext(PokemonContext);
+  const { isDarkTheme } = useContext(ThemeContext);
 
   const getNext = async () => {
     getPokemon(pokemon.id + 1);
@@ -28,14 +31,27 @@ export default function PokemonCard() {
   const pokemonImage = `https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`;
 
   return (
-    <div className='card-container'>
+    <div
+      className={`${
+        width > breakpoint ? 'card-container' : 'mobile-card-container'
+      }`}
+    >
+      {width < breakpoint ? <SearchBar /> : null}
       {!pokemon ? (
         <img src={pokeball} alt='pokeball spinner' className='pokeball' />
       ) : (
-        <div className='card'>
+        <div className={`${width > breakpoint ? 'card' : 'mobile-card'}`}>
           <div className='image-container'>
             <IconButton onClick={() => getPrevious()}>
-              <NavigateBefore className='nav-icon' />
+              <NavigateBefore
+                className={`${
+                  width > breakpoint
+                    ? 'nav-icon'
+                    : !isDarkTheme
+                    ? 'nav-icon'
+                    : 'nav-icon-mobile-light'
+                }`}
+              />
             </IconButton>
             <img
               src={pokemonImage}
@@ -43,10 +59,20 @@ export default function PokemonCard() {
               className='pokemon-img'
             />
             <IconButton onClick={() => getNext()}>
-              <NavigateNext className='nav-icon' />
+              <NavigateNext
+                className={`${
+                  width > breakpoint
+                    ? 'nav-icon'
+                    : !isDarkTheme
+                    ? 'nav-icon'
+                    : 'nav-icon-mobile-light'
+                }`}
+              />
             </IconButton>
           </div>
-          <div className='info-bg'>
+          <div
+            className={`${width > breakpoint ? 'info-bg' : 'info-bg-mobile'}`}
+          >
             <div className='card-content'>
               <div
                 className='card-header-background'
@@ -103,19 +129,6 @@ export default function PokemonCard() {
                     })}
                   </div>
                 </div>
-              </div>
-              <div className='card-bottom-content'>
-                {pokemon.types?.map((type, idx) => {
-                  return (
-                    <>
-                      <img
-                        src={require(`../assets/pokemonTypeIcons/${type}.png`)}
-                        alt={type}
-                        className='type'
-                      />
-                    </>
-                  );
-                })}
               </div>
             </div>
           </div>
