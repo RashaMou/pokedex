@@ -43,160 +43,156 @@ export default function PokemonCard({ breakpoint }) {
       }`}
     >
       {width < breakpoint ? <SearchBar /> : null}
-      {!pokemon ? (
-        <img src={pokeball} alt='pokeball spinner' className='pokeball' />
-      ) : (
-        <div className={`${width > breakpoint ? 'card' : 'mobile-card'}`}>
-          <div className='image-container'>
-            <div className='main-image'>
-              <IconButton onClick={() => getPrevious()}>
-                <NavigateBefore
-                  className={`${
-                    width > breakpoint
-                      ? 'nav-icon'
-                      : !isDarkTheme
-                      ? 'nav-icon'
-                      : 'nav-icon-mobile-light'
-                  }`}
-                />
-              </IconButton>
-              <img
-                src={pokemonImage}
-                alt={pokemon.name}
-                className='pokemon-img'
-              />
-              <IconButton onClick={() => getNext()}>
-                <NavigateNext
-                  className={`${
-                    width > breakpoint
-                      ? 'nav-icon'
-                      : !isDarkTheme
-                      ? 'nav-icon'
-                      : 'nav-icon-mobile-light'
-                  }`}
-                />
-              </IconButton>
-            </div>
-            <h4
-              className='info-title'
-              style={{
-                marginBottom: 0,
-                textAlign: 'center',
-                marginTop: '1rem',
-              }}
-            >
-              Evolution
-            </h4>
-            <div
-              className={`${
-                width > breakpoint ? 'evolution' : 'mobile-evolution'
-              }`}
-            >
-              <div className='evolved'>
-                {pokemon.evolvedFrom !== null ? (
-                  <>
-                    <IconButton onClick={() => getEvolvedFrom()}>
-                      <NavigateBefore
-                        className={`${
-                          width > breakpoint
-                            ? 'nav-icon'
-                            : !isDarkTheme
-                            ? 'nav-icon'
-                            : 'nav-icon-mobile-light'
-                        }`}
-                      />
-                    </IconButton>
-                    <p>{pokemon.evolvedFrom}</p>
-                  </>
-                ) : null}
-              </div>
-              <div className='evolved'>
-                {pokemon.evolvesTo !== null ? (
-                  <>
-                    <IconButton onClick={() => getEvolvesTo()}>
-                      <NavigateNext
-                        className={`${
-                          width > breakpoint
-                            ? 'nav-icon'
-                            : !isDarkTheme
-                            ? 'nav-icon'
-                            : 'nav-icon-mobile-light'
-                        }`}
-                      />
-                    </IconButton>
-                    <p>{pokemon.evolvesTo}</p>
-                  </>
-                ) : null}
-              </div>
-            </div>
-          </div>
-          <div
-            className={`${width > breakpoint ? 'info-bg' : 'info-bg-mobile'}`}
-          >
-            <div className='card-content'>
-              <div
-                className='card-header-background'
-                style={{ background: pokemon.color }}
-              >
-                <div className='ball-container'>
-                  <img
-                    src={pokeball}
-                    alt='pokeball'
-                    className='pokeball-small'
+      <div className={`${width > breakpoint ? 'card' : 'mobile-card'}`}>
+        <div className='image-container'>
+          {!pokemon.image ? (
+            <img src={pokeball} alt='pokeball' className='pokeball' />
+          ) : (
+            <>
+              <div className='main-image'>
+                <IconButton onClick={() => getPrevious()}>
+                  <NavigateBefore
+                    className={`${
+                      width > breakpoint
+                        ? 'nav-icon'
+                        : !isDarkTheme
+                        ? 'nav-icon'
+                        : 'nav-icon-mobile-light'
+                    }`}
                   />
-                  <p className='poke-id'> {pokemon.threeNumberId}</p>
-                </div>
-                <h2 className='name'>{pokemon.name}</h2>
+                </IconButton>
+
+                <img
+                  src={pokemon.image}
+                  alt={pokemon.name}
+                  className='pokemon-img'
+                />
+
+                <IconButton onClick={() => getNext()}>
+                  <NavigateNext
+                    className={`${
+                      width > breakpoint
+                        ? 'nav-icon'
+                        : !isDarkTheme
+                        ? 'nav-icon'
+                        : 'nav-icon-mobile-light'
+                    }`}
+                  />
+                </IconButton>
               </div>
-              <div className='card-info-container'>
-                <div className='height-weight-container'>
-                  <div className='height-weight'>
-                    <h3 className='info-title'>Height</h3>
-                    <p>{pokemon.height} dm</p>
-                  </div>
-                  <div className='height-weight'>
-                    <h3 className='info-title'>Weight</h3>
-                    <p>{pokemon.weight} hg</p>
-                  </div>
+              <h4
+                className='info-title'
+                style={{
+                  marginBottom: 0,
+                  textAlign: 'center',
+                  marginTop: '1rem',
+                }}
+              >
+                Evolution
+              </h4>
+              <div
+                className={`${
+                  width > breakpoint ? 'evolution' : 'mobile-evolution'
+                }`}
+              >
+                <div className='evolved'>
+                  {pokemon.evolvedFrom !== null ? (
+                    <>
+                      <IconButton onClick={() => getEvolvedFrom()}>
+                        <NavigateBefore
+                          className={`${
+                            width > breakpoint
+                              ? 'nav-icon'
+                              : !isDarkTheme
+                              ? 'nav-icon'
+                              : 'nav-icon-mobile-light'
+                          }`}
+                        />
+                      </IconButton>
+                      <p>{pokemon.evolvedFrom}</p>
+                    </>
+                  ) : null}
                 </div>
-                <div className='card-bottom-content'>
-                  <div className='type-container'>
-                    <h3 className='info-title'>Type</h3>
-                    <div className='inner-type-container'>
-                      {pokemon.types?.map((type, idx) => {
-                        return (
-                          <div key={idx + 20}>
-                            <img
-                              key={idx + 22}
-                              src={require(`../assets/pokemonTypeIcons/${type}.png`)}
-                              alt={type}
-                              className='type'
-                            />
-                            <p key={idx + 21}>{capitalizeFirstLetter(type)}</p>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                  <div className='stats-container'>
-                    <h3 className='info-title'>Stats</h3>
-                    {pokemon.stats?.map((item, idx) => {
+                <div className='evolved'>
+                  {pokemon.evolvesTo !== null ? (
+                    <>
+                      <IconButton onClick={() => getEvolvesTo()}>
+                        <NavigateNext
+                          className={`${
+                            width > breakpoint
+                              ? 'nav-icon'
+                              : !isDarkTheme
+                              ? 'nav-icon'
+                              : 'nav-icon-mobile-light'
+                          }`}
+                        />
+                      </IconButton>
+                      <p>{pokemon.evolvesTo}</p>
+                    </>
+                  ) : null}
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+        <div className={`${width > breakpoint ? 'info-bg' : 'info-bg-mobile'}`}>
+          <div className='card-content'>
+            <div
+              className='card-header-background'
+              style={{ background: pokemon.color }}
+            >
+              <div className='ball-container'>
+                <img src={pokeball} alt='pokeball' className='pokeball-small' />
+                <p className='poke-id'> {pokemon.threeNumberId}</p>
+              </div>
+              <h2 className='name'>{pokemon.name}</h2>
+            </div>
+            <div className='card-info-container'>
+              <div className='height-weight-container'>
+                <div className='height-weight'>
+                  <h3 className='info-title'>Height</h3>
+                  <p>{pokemon.height} dm</p>
+                </div>
+                <div className='height-weight'>
+                  <h3 className='info-title'>Weight</h3>
+                  <p>{pokemon.weight} hg</p>
+                </div>
+              </div>
+              <div className='card-bottom-content'>
+                <div className='type-container'>
+                  <h3 className='info-title'>Type</h3>
+                  <div className='inner-type-container'>
+                    {pokemon.types?.map((type, idx) => {
                       return (
-                        <div key={idx + 25} className='stats'>
-                          <p key={idx + 23}>
-                            {capitalizeFirstLetter(item.name)}
-                          </p>
-                          <ProgressBar key={idx + 26} stat={item.stat} />
+                        <div key={idx + 20}>
+                          <img
+                            key={idx + 22}
+                            src={require(`../assets/pokemonTypeIcons/${type}.png`)}
+                            alt={type}
+                            className='type'
+                          />
+                          <p key={idx + 21}>{capitalizeFirstLetter(type)}</p>
                         </div>
                       );
                     })}
                   </div>
                 </div>
+                <div className='stats-container'>
+                  <h3 className='info-title'>Stats</h3>
+                  {pokemon.stats?.map((item, idx) => {
+                    return (
+                      <div key={idx + 25} className='stats'>
+                        <p key={idx + 23}>{capitalizeFirstLetter(item.name)}</p>
+                        <ProgressBar key={idx + 26} stat={item.stat} />
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }
