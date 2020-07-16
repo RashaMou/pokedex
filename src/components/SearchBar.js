@@ -17,6 +17,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
   rootDarkTheme: {
+    borderBottom: '1px solid white',
     '& label': {
       color: 'white',
     },
