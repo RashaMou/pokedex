@@ -1,6 +1,6 @@
 /*
- * This component contains the icons for toggling the theme between light and dark
- * Functionality for theming is encapsulated in ThemeContext
+ * This component renders the icons for toggling the theme between light and dark.
+ * Functionality for theming is encapsulated in ThemeContext.
  */
 
 import React, { useContext } from 'react';

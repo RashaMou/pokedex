@@ -1,0 +1,189 @@
+.card-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 5rem;
+}
+
+.card {
+  animation: zoomIn 500ms;
+  display: flex;
+  justify-content: space-between;
+  width: 50rem;
+
+  .image-container {
+    width: 400px;
+    display: flex;
+    align-items: center;
+    padding: 20px 0 20px 0;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .main-image {
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .evolution {
+      display: flex;
+      justify-content: space-between;
+      width: 60%;
+      margin: 0 auto;
+    }
+
+    .evolved {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    transform: scale3d(0.3, 0.3, 0.3);
+    opacity: 0;
+  }
+  50% {
+    opcaity: 1;
+  }
+}
+
+.nav-icon {
+  height: 30px;
+  width: 30px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.pokemon-img {
+  width: 250px;
+}
+
+.info-bg {
+  width: 400px;
+  box-shadow: -1px 0 1px rgba(0, 0, 0, 0.24);
+
+  .card-content {
+    padding: 0;
+    width: 100%;
+  }
+}
+
+.card-header-background {
+  height: 100px;
+  //   box-shadow: 0 4px 1px rgba(0, 0, 0, 0.24), 0 8px 4px rgba(0, 0, 0, 0.12);
+}
+.ball-container {
+  display: flex;
+
+  .pokeball-small {
+    width: 30px;
+    margin: 10px 0 0 10px;
+  }
+  .poke-id {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 10px 0 0 10px;
+  }
+}
+.name {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 2.3rem;
+  margin-left: 15px;
+  color: white;
+  text-align: center;
+}
+
+.card-bottom-content {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  .type {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+  }
+}
+
+.type-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+  .inner-type-container {
+    display: flex;
+    margin-right: 20px;
+    p {
+      margin-right: 1rem;
+    }
+  }
+}
+.height-weight-container {
+  display: flex;
+  padding: 0.5rem 0 0.5rem 0;
+  justify-content: space-around;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.24), 0 4px 4px rgba(0, 0, 0, 0.12);
+
+  .height-weight {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.info-title {
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.1em;
+  font-size: 1rem;
+  font-weight: bold;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.stats-container {
+  .stats {
+    display: flex;
+    align-items: baseline;
+
+    p {
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+/*********************************
+* MOBILE STYLES
+*********************************/
+
+.mobile-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mobile-card {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+.info-bg-mobile {
+  width: 350px;
+  box-shadow: -1px 0 1px rgba(0, 0, 0, 0.24);
+  margin: 0 auto;
+}
+
+.card-content {
+  padding: 0;
+}
+
+.nav-icon-mobile-light {
+  color: white;
+}
+
+.mobile-evolution {
+  display: flex;
+  justify-content: space-around;
+}

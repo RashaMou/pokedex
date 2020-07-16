@@ -3,26 +3,28 @@ import ToggleTheme from './ToggleTheme';
 import SearchBar from './SearchBar';
 import Button from '@material-ui/core/Button';
 import FlareIcon from '@material-ui/icons/Flare';
-import { PokemonContext } from '../contexts';
+import { PokemonContext, useWindowDimensions } from '../contexts';
 
-const Header = () => {
+const Header = ({ breakpoint }) => {
+  const { width } = useWindowDimensions();
+
   const { getPokemon, randomPokemon } = useContext(PokemonContext);
   return (
     <section className='header-banner'>
       <div className='banner-body'>
         <div className='toggle-search-container'>
           <ToggleTheme />
-          <SearchBar />
+          {width > breakpoint ? <SearchBar /> : null}
         </div>
         <h1 className='header-title title is-1'>Pokedex</h1>
+
         <Button
           variant='contained'
-          color='default'
           startIcon={<FlareIcon />}
           className='button'
           onClick={() => getPokemon(randomPokemon)}
         >
-          Surprise me!
+          Random
         </Button>
       </div>
     </section>

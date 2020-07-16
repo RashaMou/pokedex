@@ -11,9 +11,13 @@
     color: white;
   }
 
-  .card {
+  .card,
+  .mobile-card {
     background-color: #433e47;
     color: white;
+  }
+  .height-weight-container {
+    background-color: #616161;
   }
 }
 
@@ -28,4 +32,16 @@
   .banner-body {
     background: rgba(254, 254, 254, 0.8);
   }
+
+  .height-weight-container {
+    background-color: #fdfdfd;
+  }
+
+  .info-bg-mobile {
+    background-color: white;
+  }
+}
+
+.background-mobile {
+  height: 100%;
 }
