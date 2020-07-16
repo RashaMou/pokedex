@@ -26,12 +26,45 @@ export const PokemonContextProvider = (props) => {
       const mainInfo = await axios.get(
         `https://pokeapi.co/api/v2/pokemon/${nameOrId}/`
       );
-
       // get species info
       const species = await axios.get(
         `https://pokeapi.co/api/v2/pokemon-species/${nameOrId}/`
       );
+      // get evolution info
+      const evolution = await axios.get(species.data.evolution_chain.url);
+      const getEvolvesTo = () => {
+        if (
+          !species.data.evolves_from_species &&
+          evolution.data.chain.evolves_to.length > 0
+        ) {
+          return evolution.data.chain.evolves_to[0].species.name;
+        } else if (
+          species.data.evolves_from_species &&
+          evolution.data.chain.evolves_to.length > 0
+        ) {
+          if (
+            evolution.data.chain.evolves_to[0].evolves_to[0].species.name ===
+            mainInfo.data.name
+          ) {
+            return null;
+          } else {
+            return evolution.data.chain.evolves_to[0].evolves_to[0].species
+              .name;
+          }
+        }
+      };
 
+      const getEvolvedFrom = () => {
+        if (species.data.evolves_from_species) {
+          return species.data.evolves_from_species.name;
+        } else {
+          return null;
+        }
+      };
+
+      const evolvesTo = getEvolvesTo();
+      const evolvedFrom = getEvolvedFrom();
+      console.log('from', species.data.evolves_from_species);
       /*
        * Types and stats returned as nested array objects.
        * These functions extract the required values from each into an array
@@ -48,7 +81,9 @@ export const PokemonContextProvider = (props) => {
       });
 
       // set results to state
-      setPokemon({
+      await setPokemon({
+        evolvedFrom: evolvedFrom,
+        evolvesTo: evolvesTo,
         threeNumberId: threeNumberId(mainInfo.data.id),
         id: mainInfo.data.id,
         name: capitalizeFirstLetter(mainInfo.data.name),

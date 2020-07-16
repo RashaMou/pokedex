@@ -14,9 +14,15 @@
   .image-container {
     width: 400px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     padding: 20px 0 20px 0;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .main-image {
+      display: flex;
+      align-items: flex-end;
+    }
   }
 }
 

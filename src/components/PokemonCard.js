@@ -20,12 +20,22 @@ export default function PokemonCard({ breakpoint }) {
     await getPokemon(pokemon.id - 1);
   };
 
+  const getEvolvedFrom = async () => {
+    await getPokemon(pokemon.evolvedFrom);
+  };
+
+  const getEvolvesTo = async () => {
+    await getPokemon(pokemon.evolvesTo);
+  };
+
   // Load Pokemon with id=1 when component mounts
   useEffect(() => {
     getPokemon(1);
-    const col = setPokemonBackgroundColor('black');
-    console.log('col', col);
   }, []);
+
+  useEffect(() => {
+    console.log('Evolved From', pokemon.evolvedFrom);
+  }, [pokemon.evolvedFrom]);
 
   // Link to higher quality Pokemon images than PokeApi sprite images.
   const pokemonImage = `https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`;
@@ -42,33 +52,53 @@ export default function PokemonCard({ breakpoint }) {
       ) : (
         <div className={`${width > breakpoint ? 'card' : 'mobile-card'}`}>
           <div className='image-container'>
-            <IconButton onClick={() => getPrevious()}>
-              <NavigateBefore
-                className={`${
-                  width > breakpoint
-                    ? 'nav-icon'
-                    : !isDarkTheme
-                    ? 'nav-icon'
-                    : 'nav-icon-mobile-light'
-                }`}
+            <div className='main-image'>
+              <IconButton onClick={() => getPrevious()}>
+                <NavigateBefore
+                  className={`${
+                    width > breakpoint
+                      ? 'nav-icon'
+                      : !isDarkTheme
+                      ? 'nav-icon'
+                      : 'nav-icon-mobile-light'
+                  }`}
+                />
+              </IconButton>
+              <img
+                src={pokemonImage}
+                alt={pokemon.name}
+                className='pokemon-img'
               />
-            </IconButton>
-            <img
-              src={pokemonImage}
-              alt={pokemon.name}
-              className='pokemon-img'
-            />
-            <IconButton onClick={() => getNext()}>
-              <NavigateNext
-                className={`${
-                  width > breakpoint
-                    ? 'nav-icon'
-                    : !isDarkTheme
-                    ? 'nav-icon'
-                    : 'nav-icon-mobile-light'
-                }`}
-              />
-            </IconButton>
+              <IconButton onClick={() => getNext()}>
+                <NavigateNext
+                  className={`${
+                    width > breakpoint
+                      ? 'nav-icon'
+                      : !isDarkTheme
+                      ? 'nav-icon'
+                      : 'nav-icon-mobile-light'
+                  }`}
+                />
+              </IconButton>
+            </div>
+            <div className='evolution'>
+              <div>
+                {pokemon.evolvedFrom !== null ? (
+                  <div className='evolve-name' onClick={() => getEvolvedFrom()}>
+                    <p>Evolved From</p>
+                    <p>{pokemon.evolvedFrom}</p>
+                  </div>
+                ) : null}
+              </div>
+              <div>
+                {pokemon.evolvesTo !== null ? (
+                  <div className='evolve-name' onClick={() => getEvolvesTo()}>
+                    <p>Evolves To</p>
+                    <p>{pokemon.evolvesTo}</p>
+                  </div>
+                ) : null}
+              </div>
+            </div>
           </div>
           <div
             className={`${width > breakpoint ? 'info-bg' : 'info-bg-mobile'}`}
@@ -107,6 +137,7 @@ export default function PokemonCard({ breakpoint }) {
                         return (
                           <>
                             <img
+                              key={idx + idx}
                               src={require(`../assets/pokemonTypeIcons/${type}.png`)}
                               alt={type}
                               className='type'
@@ -121,7 +152,7 @@ export default function PokemonCard({ breakpoint }) {
                     <h3 className='info-title'>Stats</h3>
                     {pokemon.stats?.map((item, idx) => {
                       return (
-                        <div key={idx} className='stats'>
+                        <div key={idx + idx} className='stats'>
                           <p>{capitalizeFirstLetter(item.name)}</p>
                           <ProgressBar stat={item.stat} />
                         </div>
