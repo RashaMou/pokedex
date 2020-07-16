@@ -1,18 +1,26 @@
 # React Pokedex
 
-Project description
+Pokedex frontend built with React using [PokeApi](https://www.pokeapi.com).
 
 ## Features
 
 - Fully responsive
 - State handled by Context API
-- React Query caches names of all Pokemon for autocomplete search by name
-- Material UI
-- Cycle through Pokemons
-- Save user dark or light theme preference in local storage
+- All Pokemon names cached using React Query for autocomplete search by name
+- Material UI components
+- Custom hook saves user dark or light theme preference in local storage
 - Get random Pokemon
 - Dynamic card background changes depending on given Pokemon's color
-- CSS/SCSS
+
+## Screenshots
+
+#### Light mode, desktop
+
+<img src="./screenshots/lightmodedesktop.png" width="300" alt='pokedex preview'/>
+
+### Dark mode, mobile
+
+<img src="./screenshots/darkmodemobile.png" width="200" alt='pokedex preview'/>
 
 ## Testing
 
