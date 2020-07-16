@@ -3,7 +3,7 @@ import { NavigateBefore, NavigateNext } from '@material-ui/icons';
 import { PokemonContext, useWindowDimensions, ThemeContext } from '../contexts';
 import { IconButton } from '@material-ui/core';
 import pokeball from '../assets/pokeball.png';
-import { setPokemonBackgroundColor, capitalizeFirstLetter } from '../utils';
+import { capitalizeFirstLetter } from '../utils';
 import ProgressBar from './ProgressBar';
 import SearchBar from './SearchBar';
 
@@ -78,7 +78,7 @@ export default function PokemonCard({ breakpoint }) {
               </IconButton>
             </div>
             <div className='evolution'>
-              <div>
+              <div className='evolved'>
                 {pokemon.evolvedFrom !== null ? (
                   <>
                     <IconButton onClick={() => getEvolvedFrom()}>
@@ -96,7 +96,7 @@ export default function PokemonCard({ breakpoint }) {
                   </>
                 ) : null}
               </div>
-              <div>
+              <div className='evolved'>
                 {pokemon.evolvesTo !== null ? (
                   <>
                     <IconButton onClick={() => getEvolvesTo()}>
