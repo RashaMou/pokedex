@@ -33,10 +33,6 @@ export default function PokemonCard({ breakpoint }) {
     getPokemon(1);
   }, []);
 
-  useEffect(() => {
-    console.log('Evolved From', pokemon.evolvedFrom);
-  }, [pokemon.evolvedFrom]);
-
   // Link to higher quality Pokemon images than PokeApi sprite images.
   const pokemonImage = `https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`;
 
@@ -84,18 +80,38 @@ export default function PokemonCard({ breakpoint }) {
             <div className='evolution'>
               <div>
                 {pokemon.evolvedFrom !== null ? (
-                  <div className='evolve-name' onClick={() => getEvolvedFrom()}>
-                    <p>Evolved From</p>
+                  <>
+                    <IconButton onClick={() => getEvolvedFrom()}>
+                      <NavigateBefore
+                        className={`${
+                          width > breakpoint
+                            ? 'nav-icon'
+                            : !isDarkTheme
+                            ? 'nav-icon'
+                            : 'nav-icon-mobile-light'
+                        }`}
+                      />
+                    </IconButton>
                     <p>{pokemon.evolvedFrom}</p>
-                  </div>
+                  </>
                 ) : null}
               </div>
               <div>
                 {pokemon.evolvesTo !== null ? (
-                  <div className='evolve-name' onClick={() => getEvolvesTo()}>
-                    <p>Evolves To</p>
+                  <>
+                    <IconButton onClick={() => getEvolvesTo()}>
+                      <NavigateNext
+                        className={`${
+                          width > breakpoint
+                            ? 'nav-icon'
+                            : !isDarkTheme
+                            ? 'nav-icon'
+                            : 'nav-icon-mobile-light'
+                        }`}
+                      />
+                    </IconButton>
                     <p>{pokemon.evolvesTo}</p>
-                  </div>
+                  </>
                 ) : null}
               </div>
             </div>

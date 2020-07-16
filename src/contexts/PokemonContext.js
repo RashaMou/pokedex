@@ -42,14 +42,16 @@ export const PokemonContextProvider = (props) => {
           species.data.evolves_from_species &&
           evolution.data.chain.evolves_to.length > 0
         ) {
-          if (
-            evolution.data.chain.evolves_to[0].evolves_to[0].species.name ===
-            mainInfo.data.name
-          ) {
-            return null;
-          } else {
-            return evolution.data.chain.evolves_to[0].evolves_to[0].species
-              .name;
+          if (evolution.data.chain.evolves_to[0].evolves_to[0]) {
+            if (
+              evolution.data.chain.evolves_to[0].evolves_to[0].species.name ===
+              mainInfo.data.name
+            ) {
+              return null;
+            } else {
+              return evolution.data.chain.evolves_to[0].evolves_to[0].species
+                .name;
+            }
           }
         }
       };
@@ -64,7 +66,6 @@ export const PokemonContextProvider = (props) => {
 
       const evolvesTo = getEvolvesTo();
       const evolvedFrom = getEvolvedFrom();
-      console.log('from', species.data.evolves_from_species);
       /*
        * Types and stats returned as nested array objects.
        * These functions extract the required values from each into an array
