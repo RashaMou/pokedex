@@ -89,7 +89,7 @@ export default function PokemonCard({ breakpoint }) {
             </h4>
             <div
               className={`${
-                width > breakpoint ? 'evolution' : 'monile-evolution'
+                width > breakpoint ? 'evolution' : 'mobile-evolution'
               }`}
             >
               <div className='evolved'>
