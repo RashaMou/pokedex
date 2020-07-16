@@ -38,35 +38,30 @@ export const PokemonContextProvider = (props) => {
        */
 
       const getEvolvesTo = () => {
-        // if no evolved from and there is evolves_to:
-        if (
-          !species.data.evolves_from_species &&
-          evolution.data.chain.evolves_to.length > 0
-        ) {
-          return evolution.data.chain.evolves_to[0].species.name;
-        } // if no evolved from and no evolves to, return null
-        else if (
-          !species.data.evolves_from_species &&
-          evolution.data.chain.evolves_to.length === 0
-        ) {
-          return null;
-        } // if evolves from and there is evolves to:
-        else if (
-          species.data.evolves_from_species &&
-          evolution.data.chain.evolves_to.length > 0
-        ) {
-          if (evolution.data.chain.evolves_to[0].evolves_to[0]) {
-            if (
-              evolution.data.chain.evolves_to[0].evolves_to[0].species.name ===
-              mainInfo.data.name
-            ) {
-              return null;
-            } else {
-              return evolution.data.chain.evolves_to[0].evolves_to[0].species
-                .name;
-            }
-          } else if (!evolution.data.chain.evolves_to.evolves_to) {
+        // if it's not evolved from anything:
+        if (!species.data.evolves_from_species) {
+          if (evolution.data.chain.evolves_to.length > 0) {
+            return evolution.data.chain.evolves_to[0].species.name;
+          } // if no evolved from and no evolves to, return null
+          else if (evolution.data.chain.evolves_to.length === 0) {
             return null;
+          }
+        } // if it is evolved from something:
+        else {
+          if (evolution.data.chain.evolves_to.length > 0) {
+            if (evolution.data.chain.evolves_to[0].evolves_to[0]) {
+              if (
+                evolution.data.chain.evolves_to[0].evolves_to[0].species
+                  .name === mainInfo.data.name
+              ) {
+                return null;
+              } else {
+                return evolution.data.chain.evolves_to[0].evolves_to[0].species
+                  .name;
+              }
+            } else if (!evolution.data.chain.evolves_to.evolves_to) {
+              return null;
+            }
           }
         }
       };
