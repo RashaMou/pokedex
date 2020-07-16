@@ -89,7 +89,7 @@ export default function PokemonCard({ breakpoint }) {
             </h4>
             <div
               className={`${
-                width > breakpoint ? 'evolution' : 'evolution-mobile'
+                width > breakpoint ? 'evolution' : 'monile-evolution'
               }`}
             >
               <div className='evolved'>
@@ -165,15 +165,15 @@ export default function PokemonCard({ breakpoint }) {
                     <div className='inner-type-container'>
                       {pokemon.types?.map((type, idx) => {
                         return (
-                          <>
+                          <div key={idx + 20}>
                             <img
-                              key={idx + idx}
+                              key={idx + 22}
                               src={require(`../assets/pokemonTypeIcons/${type}.png`)}
                               alt={type}
                               className='type'
                             />
-                            <p>{type}</p>
-                          </>
+                            <p key={idx + 21}>{capitalizeFirstLetter(type)}</p>
+                          </div>
                         );
                       })}
                     </div>
@@ -182,9 +182,11 @@ export default function PokemonCard({ breakpoint }) {
                     <h3 className='info-title'>Stats</h3>
                     {pokemon.stats?.map((item, idx) => {
                       return (
-                        <div key={idx + idx} className='stats'>
-                          <p>{capitalizeFirstLetter(item.name)}</p>
-                          <ProgressBar stat={item.stat} />
+                        <div key={idx + 25} className='stats'>
+                          <p key={idx + 23}>
+                            {capitalizeFirstLetter(item.name)}
+                          </p>
+                          <ProgressBar key={idx + 26} stat={item.stat} />
                         </div>
                       );
                     })}

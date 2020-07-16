@@ -5,7 +5,6 @@
 
 import React, { createContext, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
 import {
   getRandomNumber,
   setPokemonBackgroundColor,
@@ -32,12 +31,23 @@ export const PokemonContextProvider = (props) => {
       );
       // get evolution info
       const evolution = await axios.get(species.data.evolution_chain.url);
+
+      /*
+       * getEvolvesTo and getEvolvedFrom make sure that the data fields
+       * we're trying to get from the API are not null
+       */
+
       const getEvolvesTo = () => {
         if (
           !species.data.evolves_from_species &&
           evolution.data.chain.evolves_to.length > 0
         ) {
           return evolution.data.chain.evolves_to[0].species.name;
+        } else if (
+          !species.data.evolves_from_species &&
+          evolution.data.chain.evolves_to.length === 0
+        ) {
+          return null;
         } else if (
           species.data.evolves_from_species &&
           evolution.data.chain.evolves_to.length > 0
@@ -66,6 +76,7 @@ export const PokemonContextProvider = (props) => {
 
       const evolvesTo = getEvolvesTo();
       const evolvedFrom = getEvolvedFrom();
+
       /*
        * Types and stats returned as nested array objects.
        * These functions extract the required values from each into an array

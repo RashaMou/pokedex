@@ -6,14 +6,14 @@ import {
   PokemonContextProvider,
   useWindowDimensions,
 } from './contexts';
-import { Route } from 'react-router-dom';
 
-function App({ renderMobile, renderDesktop }) {
+function App() {
   const { isDarkTheme } = useContext(ThemeContext);
   const { width } = useWindowDimensions();
 
   const breakpoint = 414;
 
+  // Conditional classnames to set background height according to theme and screen dimensions
   const classes = () => {
     if (isDarkTheme && width > breakpoint) {
       return 'darkTheme';
@@ -25,12 +25,9 @@ function App({ renderMobile, renderDesktop }) {
       return 'lightTheme background-mobile';
   };
 
-  //`${!isDarkTheme ? 'lightTheme' : 'darkTheme'}`
-
   return (
     <PokemonContextProvider>
       <div className={classes()}>
-        <Route path='/:id' component={PokemonCard} />
         <Header breakpoint={breakpoint} />
         <PokemonCard breakpoint={breakpoint} />
       </div>
