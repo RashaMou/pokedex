@@ -38,17 +38,20 @@ export const PokemonContextProvider = (props) => {
        */
 
       const getEvolvesTo = () => {
+        // if no evolved from and there is evolves_to:
         if (
           !species.data.evolves_from_species &&
           evolution.data.chain.evolves_to.length > 0
         ) {
           return evolution.data.chain.evolves_to[0].species.name;
-        } else if (
+        } // if no evolved from and no evolves to, return null
+        else if (
           !species.data.evolves_from_species &&
           evolution.data.chain.evolves_to.length === 0
         ) {
           return null;
-        } else if (
+        } // if evolves from and there is evolves to:
+        else if (
           species.data.evolves_from_species &&
           evolution.data.chain.evolves_to.length > 0
         ) {
@@ -62,6 +65,8 @@ export const PokemonContextProvider = (props) => {
               return evolution.data.chain.evolves_to[0].evolves_to[0].species
                 .name;
             }
+          } else if (!evolution.data.chain.evolves_to.evolves_to) {
+            return null;
           }
         }
       };
