@@ -77,7 +77,21 @@ export default function PokemonCard({ breakpoint }) {
                 />
               </IconButton>
             </div>
-            <div className='evolution'>
+            <h4
+              className='info-title'
+              style={{
+                marginBottom: 0,
+                textAlign: 'center',
+                marginTop: '1rem',
+              }}
+            >
+              Evolution
+            </h4>
+            <div
+              className={`${
+                width > breakpoint ? 'evolution' : 'evolution-mobile'
+              }`}
+            >
               <div className='evolved'>
                 {pokemon.evolvedFrom !== null ? (
                   <>

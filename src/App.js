@@ -14,9 +14,22 @@ function App({ renderMobile, renderDesktop }) {
 
   const breakpoint = 414;
 
+  const classes = () => {
+    if (isDarkTheme && width > breakpoint) {
+      return 'darkTheme';
+    } else if (isDarkTheme && width < breakpoint)
+      return 'darkTheme background-mobile';
+    else if (!isDarkTheme && width > breakpoint) {
+      return 'lightTheme';
+    } else if (!isDarkTheme && width < breakpoint)
+      return 'lightTheme background-mobile';
+  };
+
+  //`${!isDarkTheme ? 'lightTheme' : 'darkTheme'}`
+
   return (
     <PokemonContextProvider>
-      <div className={`${!isDarkTheme ? 'lightTheme' : 'darkTheme'}`}>
+      <div className={classes()}>
         <Route path='/:id' component={PokemonCard} />
         <Header breakpoint={breakpoint} />
         <PokemonCard breakpoint={breakpoint} />

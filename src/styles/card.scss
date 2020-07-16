@@ -166,13 +166,13 @@
 .mobile-card {
   display: flex;
   flex-direction: column;
+  margin-bottom: 2rem;
 }
 
 .info-bg-mobile {
-  width: 300px;
+  width: 350px;
   box-shadow: -1px 0 1px rgba(0, 0, 0, 0.24);
   margin: 0 auto;
-  margin-bottom: 2rem;
 }
 
 .card-content {
@@ -181,4 +181,9 @@
 
 .nav-icon-mobile-light {
   color: white;
+}
+
+.evolution-mobile {
+  display: flex;
+  justify-content: space-around;
 }
