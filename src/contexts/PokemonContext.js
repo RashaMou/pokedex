@@ -76,6 +76,8 @@ export const PokemonContextProvider = (props) => {
 
       const evolvesTo = getEvolvesTo();
       const evolvedFrom = getEvolvedFrom();
+      // Link to higher quality Pokemon images than PokeApi sprite images.
+      const pokemonImage = `https://pokeres.bastionbot.org/images/pokemon/${mainInfo.data.id}.png`;
 
       /*
        * Types and stats returned as nested array objects.
@@ -101,10 +103,10 @@ export const PokemonContextProvider = (props) => {
         name: capitalizeFirstLetter(mainInfo.data.name),
         height: mainInfo.data.height,
         weight: mainInfo.data.weight,
-        image: mainInfo.data.sprites.front_default,
         color: setPokemonBackgroundColor(species.data.color.name),
         types: typesArray,
         stats: statsArray,
+        image: pokemonImage,
       });
     } catch (error) {
       console.log(error);

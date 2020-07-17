@@ -11,7 +11,7 @@ function App() {
   const { isDarkTheme } = useContext(ThemeContext);
   const { width } = useWindowDimensions();
 
-  const breakpoint = 414;
+  const breakpoint = 700;
 
   // Conditional classnames to set background height according to theme and screen dimensions
   const classes = () => {
