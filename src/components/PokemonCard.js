@@ -1,6 +1,11 @@
 import React, { useEffect, useContext } from 'react';
 import { NavigateBefore, NavigateNext } from '@material-ui/icons';
-import { PokemonContext, useWindowDimensions, ThemeContext } from '../contexts';
+import {
+  PokemonContext,
+  useWindowDimensions,
+  ThemeContext,
+  WindowDimensionsContext,
+} from '../contexts';
 import { IconButton } from '@material-ui/core';
 import pokeball from '../assets/pokeball.png';
 import { capitalizeFirstLetter } from '../utils';
@@ -8,7 +13,9 @@ import ProgressBar from './ProgressBar';
 import SearchBar from './SearchBar';
 
 export default function PokemonCard({ breakpoint }) {
-  const { width } = useWindowDimensions();
+  // const { width } = useWindowDimensions();
+  const { width } = useContext(WindowDimensionsContext);
+
   const { getPokemon, pokemon } = useContext(PokemonContext);
   const { isDarkTheme } = useContext(ThemeContext);
 

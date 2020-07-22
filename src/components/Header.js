@@ -3,10 +3,14 @@ import ToggleTheme from './ToggleTheme';
 import SearchBar from './SearchBar';
 import Button from '@material-ui/core/Button';
 import FlareIcon from '@material-ui/icons/Flare';
-import { PokemonContext, useWindowDimensions } from '../contexts';
+import {
+  PokemonContext,
+  useWindowDimensions,
+  WindowDimensionsContext,
+} from '../contexts';
 
 const Header = ({ breakpoint }) => {
-  const { width } = useWindowDimensions();
+  const { width } = useContext(WindowDimensionsContext);
 
   const { getPokemon, randomPokemon } = useContext(PokemonContext);
   return (
