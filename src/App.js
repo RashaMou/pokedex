@@ -4,12 +4,12 @@ import Header from './components/Header';
 import {
   ThemeContext,
   PokemonContextProvider,
-  useWindowDimensions,
+  WindowDimensionsContext,
 } from './contexts';
 
 function App() {
   const { isDarkTheme } = useContext(ThemeContext);
-  const { width } = useWindowDimensions();
+  const { width } = useContext(WindowDimensionsContext);
 
   const breakpoint = 700;
 
@@ -27,7 +27,7 @@ function App() {
 
   return (
     <PokemonContextProvider>
-      <div className={classes()}>
+      <div className={classes()} data-testid='themetest'>
         <Header breakpoint={breakpoint} />
         <PokemonCard breakpoint={breakpoint} />
       </div>

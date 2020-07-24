@@ -12,8 +12,11 @@ import { ThemeContext } from '../contexts';
 const ToggleTheme = () => {
   const { toggleTheme, isDarkTheme } = useContext(ThemeContext);
   return (
-    <div className='toggle__box'>
-      <IconButton onClick={() => toggleTheme()}>
+    <div className='toggle__box' data-testid='toggle-theme-button'>
+      <IconButton
+        onClick={() => toggleTheme()}
+        data-testid='theme-toggle-button'
+      >
         {isDarkTheme ? (
           <Brightness4Icon className='moon-icon' alt='moon icon' />
         ) : (
