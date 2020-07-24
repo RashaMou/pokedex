@@ -3,11 +3,7 @@ import ToggleTheme from './ToggleTheme';
 import SearchBar from './SearchBar';
 import Button from '@material-ui/core/Button';
 import FlareIcon from '@material-ui/icons/Flare';
-import {
-  PokemonContext,
-  useWindowDimensions,
-  WindowDimensionsContext,
-} from '../contexts';
+import { PokemonContext, WindowDimensionsContext } from '../contexts';
 
 const Header = ({ breakpoint }) => {
   const { width } = useContext(WindowDimensionsContext);
@@ -23,6 +19,7 @@ const Header = ({ breakpoint }) => {
         <h1 className='header-title title is-1'>Pokedex</h1>
 
         <Button
+          data-testid='random-button'
           variant='contained'
           startIcon={<FlareIcon />}
           className='button'

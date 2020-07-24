@@ -4,7 +4,6 @@ import Header from './components/Header';
 import {
   ThemeContext,
   PokemonContextProvider,
-  useWindowDimensions,
   WindowDimensionsContext,
 } from './contexts';
 

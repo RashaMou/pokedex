@@ -2,7 +2,6 @@ import React, { useEffect, useContext } from 'react';
 import { NavigateBefore, NavigateNext } from '@material-ui/icons';
 import {
   PokemonContext,
-  useWindowDimensions,
   ThemeContext,
   WindowDimensionsContext,
 } from '../contexts';
@@ -13,7 +12,6 @@ import ProgressBar from './ProgressBar';
 import SearchBar from './SearchBar';
 
 export default function PokemonCard({ breakpoint }) {
-  // const { width } = useWindowDimensions();
   const { width } = useContext(WindowDimensionsContext);
 
   const { getPokemon, pokemon } = useContext(PokemonContext);
@@ -40,9 +38,6 @@ export default function PokemonCard({ breakpoint }) {
     getPokemon(1);
   }, []);
 
-  // Link to higher quality Pokemon images than PokeApi sprite images.
-  const pokemonImage = `https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`;
-
   return (
     <div
       className={`${
@@ -50,7 +45,10 @@ export default function PokemonCard({ breakpoint }) {
       }`}
     >
       {width < breakpoint ? <SearchBar /> : null}
-      <div className={`${width > breakpoint ? 'card' : 'mobile-card'}`}>
+      <div
+        className={`${width > breakpoint ? 'card' : 'mobile-card'}`}
+        data-testid='card'
+      >
         <div className='image-container'>
           {!pokemon.image ? (
             <img src={pokeball} alt='pokeball' className='pokeball' />
@@ -75,7 +73,12 @@ export default function PokemonCard({ breakpoint }) {
                   className='pokemon-img'
                 />
 
-                <IconButton onClick={() => getNext()}>
+                <IconButton
+                  onClick={() => getNext()}
+                  data-testid='next-button'
+                  aria-label='next-button'
+                  name='next-button'
+                >
                   <NavigateNext
                     className={`${
                       width > breakpoint
@@ -94,6 +97,7 @@ export default function PokemonCard({ breakpoint }) {
                   textAlign: 'center',
                   marginTop: '1rem',
                 }}
+                data-testid='evolution'
               >
                 Evolution
               </h4>
@@ -152,7 +156,9 @@ export default function PokemonCard({ breakpoint }) {
                 <img src={pokeball} alt='pokeball' className='pokeball-small' />
                 <p className='poke-id'> {pokemon.threeNumberId}</p>
               </div>
-              <h2 className='name'>{pokemon.name}</h2>
+              <h2 className='name' data-testid='pokemon-name'>
+                {pokemon.name}
+              </h2>
             </div>
             <div className='card-info-container'>
               <div className='height-weight-container'>
