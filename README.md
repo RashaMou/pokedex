@@ -22,7 +22,24 @@ Pokedex frontend built with React using [PokeApi](https://www.pokeapi.com).
 
 <img src="./screenshots/darkmodemobile.png" width="200" alt='pokedex preview'/>
 
+## Installation and Setup Instructions
+
+### Clone or download this repository. You will need node and npm installed globally on your machine.
+
+### Installation:
+
+`yarn install`
+
+To Start Server:
+
+`yarn start`
+
+To view app locally:
+
+`localhost:3000`
+
 ## Testing
 
 `yarn test`
+
 Launches the test runner in the interactive watch mode.<br />
