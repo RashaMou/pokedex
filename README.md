@@ -1,6 +1,7 @@
 # React Pokedex
 
 Pokedex frontend built with React using [PokeApi](https://www.pokeapi.com).
+View live site [here](https://unruffled-mcnulty-29f3ec.netlify.app/).
 
 ## Features
 
